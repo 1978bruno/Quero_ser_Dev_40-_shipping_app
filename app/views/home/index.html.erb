@@ -1,0 +1,19 @@
+<h1>Transportadora</h1>
+<div>
+  <%= link_to('Cadastrar modalidade', new_shipping_path) %>
+</div>
+<% @shippings.each do |s| %>
+  <div>
+    <strong>Nome da Modalidade:   </strong><%= link_to(s.name, shipping_path(s.id)) %><br>
+<!--    <strong>Distância mínima:     </strong><%= s.min_dist %>km<br>
+    <strong>Distância máxima:     </strong><%= s.max_dist %>km<br>
+    <strong>Peso mínimo da carga: </strong><%= s.min_weight %>kg<br>
+    <strong>Peso mínimo da carga: </strong><%= s.max_weight %>kg<br> -->
+    <strong>Tarifa padrão:     R$ </strong><%= s.deliv_fee %><br>
+  </div>
+  <div>
+    <% if @shippings.empty? %>
+      <p>Não existe modalidades de transportes cadastrados</p>
+    <% end %>
+  </div>
+<% end %>

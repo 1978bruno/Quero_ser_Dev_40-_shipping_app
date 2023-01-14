@@ -1,0 +1,15 @@
+<h1>Transportadora</h1>
+
+  <div>
+    <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br>
+    <strong>Distância mínima:     </strong><%= @shipping.min_dist %>km<br>
+    <strong>Distância máxima:     </strong><%= @shipping.max_dist %>km<br>
+    <strong>Peso mínimo da carga: </strong><%= @shipping.min_weight %>kg<br>
+    <strong>Peso mínimo da carga: </strong><%= @shipping.max_weight %>kg<br>
+    <strong>Tarifa padrão:     R$ </strong><%= @shipping.deliv_fee %><br>
+    <strong>Status:               </strong><%= @shipping.status %><br>
+  </div>
+
+  <div>
+    <%= link_to('Voltar', root_path) %>
+  </div>
