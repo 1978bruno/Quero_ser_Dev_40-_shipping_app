@@ -4,13 +4,14 @@ class ShippingsController < ApplicationController
     @shipping = Shipping.find(id)
   end
   def new
+    @shipping = Shipping.new()
   end
   def create
     shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
                                                       :min_weight, :max_weight, 
-                                                      :deliv_fee, :status)
+                                                      :deliv_fee, :statuses)
     s = Shipping.new(shipping_params)
-    s.save()
+    s.save
     redirect_to root_path
   end
 

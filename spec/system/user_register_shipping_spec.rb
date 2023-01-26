@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra nova modalidade de transporte' do
   it 'iniciando pela tela inicial' do
 
-    visit(root_path)
+    visit root_path
     click_on ('Cadastrar modalidade')
 
     expect(page).to have_field('Nome')
