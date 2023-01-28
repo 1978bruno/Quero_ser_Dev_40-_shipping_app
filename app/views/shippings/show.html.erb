@@ -7,7 +7,7 @@
     <strong>Peso mínimo da carga: </strong><%= @shipping.min_weight %>kg<br>
     <strong>Peso mínimo da carga: </strong><%= @shipping.max_weight %>kg<br>
     <strong>Tarifa padrão:     R$ </strong><%= @shipping.deliv_fee %><br>
-    <strong>Status:               </strong><%= @shipping.status %><br>
+    <strong>Situação:               </strong><%= I18n.t(@shipping.status) %><br>
   </div>
 
   <div>

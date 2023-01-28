@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      shipping:  
+        one: 'Transporte'
+        other: 'Transportes'
+    attributes:
+      shipping:
+        name: 'Nome'
+        min_dist: 'Distância mínima'
+        max_dist: 'Distância máxima'
+        min_weight: 'Peso mínimo'
+        max_weight: 'Peso máximo'
+        deliv_fee: 'Tarifa de entrega'
+        status: 'Situação'

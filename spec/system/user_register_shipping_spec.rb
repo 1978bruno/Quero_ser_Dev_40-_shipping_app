@@ -28,7 +28,8 @@ describe 'Usuário cadastra nova modalidade de transporte' do
 
     expect(current_path).to eq root_path
     expect(page).to have_content 'MOC'
-    expect(page).to have_content '2500'
+    expect(page).to have_content '100'
+    expect(page).to have_content '800'
 
   end
   it 'e habilitar o botao de status' do

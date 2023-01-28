@@ -14,5 +14,9 @@ class ShippingsController < ApplicationController
     s.save
     redirect_to root_path
   end
+  def search
+    @name = params["query"]
+    @shippings = Shipping.where("name LIKE ?", "%#{@name}%")
+  end
 
 end

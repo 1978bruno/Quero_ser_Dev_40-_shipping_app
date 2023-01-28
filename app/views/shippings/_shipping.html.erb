@@ -1,0 +1,10 @@
+  <dl>
+    <dt><%= Shipping.human_attribute_name(:name) %>:</dt>
+    <dd><%= link_to shipping.name, shipping %></dd>
+    <dt><%= Shipping.human_attribute_name(:min_dist) %>:</dt>
+    <dd><%= shipping.min_dist %>km</dd>
+    <dt><%= Shipping.human_attribute_name(:max_dist) %>:</dt>
+    <dd><%= shipping.max_dist %>km</dd>
+    <dt><%= Shipping.human_attribute_name(:status) %>:</dt>
+    <dd><%= I18n.t(shipping.status) %></dd>
+  </dl>

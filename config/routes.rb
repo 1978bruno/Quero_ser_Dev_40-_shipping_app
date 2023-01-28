@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   root to: 'home#index'
-  resources :shippings, only: [:show, :new, :create]
+  resources :shippings, only: [:show, :new, :create] do
+    get 'search', on: :collection
+  end
 
 end

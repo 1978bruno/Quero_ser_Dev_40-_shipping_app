@@ -13,25 +13,29 @@ describe 'Usuário visualiza tela inicial da Transportadora' do
   end
 
   it 'e vê as modalidade de transportes cadastras' do
-    Shipping.create(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, deliv_fee: 250)
-    Shipping.create(name: 'Maceio', min_dist: 70, max_dist: 200, min_weight: 100, max_weight: 500, deliv_fee: 1000)
+    Shipping.create(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
+                    deliv_fee: 250, status: 0)
+    Shipping.create(name: 'Maceio', min_dist: 70, max_dist: 200, min_weight: 100, max_weight: 500, 
+                    deliv_fee: 1000, status: 1)
 
     visit(root_path)
 
     expect(page).not_to have_content('Não existe modalidades de transportes cadastrados')
     expect(page).to have_content('Nome da Modalidade: Rio')
-    expect(page).not_to have_content('Distância mínima: 60km')
-    expect(page).not_to have_content('Distância máxima: 120km')
+    expect(page).to have_content('Distância mínima: 60km')
+    expect(page).to have_content('Distância máxima: 120km')
     expect(page).not_to have_content('Peso mínimo da carga: 200kg')
     expect(page).not_to have_content('Peso mínimo da carga: 800kg')
-    expect(page).to have_content('Tarifa padrão: R$ 250')
+    expect(page).not_to have_content('Tarifa padrão: R$ 250')
+    expect(page).to have_content("Situação: inativo")
 
     expect(page).to have_content('Nome da Modalidade: Maceio')
-    expect(page).not_to have_content('Distância mínima: 70km')
-    expect(page).not_to have_content('Distância máxima: 200km')
+    expect(page).to have_content('Distância mínima: 70km')
+    expect(page).to have_content('Distância máxima: 200km')
     expect(page).not_to have_content('Peso mínimo da carga: 100kg')
     expect(page).not_to have_content('Peso mínimo da carga: 500kg')
-    expect(page).to have_content('Tarifa padrão: R$ 1000')
+    expect(page).not_to have_content('Tarifa padrão: R$ 1000')
+    expect(page).to have_content("Situação: ativo")
   end
 
   it 'e não existe modalidade de transportes cadastras' do

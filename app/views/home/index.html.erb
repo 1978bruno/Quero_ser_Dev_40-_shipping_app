@@ -2,14 +2,19 @@
 <div>
   <%= link_to('Cadastrar modalidade', new_shipping_path) %>
 </div>
+<div>
+  <%= form_with url: search_shippings_path, method: :get do |form| %>
+    <%= form.label :query, "Buscar Modalidade" %>
+    <%= form.text_field :query %>
+    <%= form.submit "Buscar" %>
+  <% end %>
+</div>
 <% @shippings.each do |s| %>
   <div>
-    <strong>Nome da Modalidade:   </strong><%= link_to(s.name, shipping_path(s.id)) %><br>
-<!--    <strong>Distância mínima:     </strong><%= s.min_dist %>km<br>
-    <strong>Distância máxima:     </strong><%= s.max_dist %>km<br>
-    <strong>Peso mínimo da carga: </strong><%= s.min_weight %>kg<br>
-    <strong>Peso mínimo da carga: </strong><%= s.max_weight %>kg<br> -->
-    <strong>Tarifa padrão:     R$ </strong><%= s.deliv_fee %><br>
+    <strong>Nome da Modalidade: </strong><%= link_to(s.name, shipping_path(s.id)) %><br>
+    <strong>Distância mínima:   </strong><%= s.min_dist %>km<br>
+    <strong>Distância máxima:   </strong><%= s.max_dist %>km<br>
+    <strong>Situação:           </strong><%= I18n.t(s.status) %><br>
   </div>
   <div>
     <% if @shippings.empty? %>
