@@ -1,0 +1,31 @@
+<%= form_with(model: Vehicle.new) do |f| %>
+  <div>
+    <%=f.label :license_plate %>
+    <%= f.text_field :license_plate %>
+  </div>
+  <div>
+    <%=f.label :vehicle_types_id, 'Modelo' %>
+    <%= f.collection_select :vehicle_types_id, @vehicle_types, :id, :model_vehicle %>
+  </div>
+  <div>
+    <%=f.label :vehicle_categories_id %>
+    <%= f.collection_select :vehicle_categories_id, @vehicle_categories, :id, :category %>
+  </div>
+  <div>
+    <%=f.label :manufature_year %>
+    <%= f.number_field :manufature_year %>
+  </div>
+  <div>
+    <%=f.label :maximum_load_capacity %>
+    <%= f.number_field :maximum_load_capacity %>
+  </div>
+  <div>
+    <%= f.label :status, 'Status' %>
+    <%= f.check_box :status %>
+
+  </div>
+
+  <div>
+    <%= f.submit 'Gravar'  %>
+  </div>
+<% end %>

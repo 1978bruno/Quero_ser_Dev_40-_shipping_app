@@ -1,9 +1,16 @@
 <div>
-  <strong><%= Vehicle.human_attribute_name(:license_plate) %>: </strong><%= vehicle.license_plate %><br>
-  <strong><%= Vehicle.human_attribute_name(:vehicle_types_id) %>: </strong><%= vehicle.vehicle_types.manufacturer_vehicle %><br>
-  <strong><%= Vehicle.human_attribute_name(:vehicle_types_id) %>: </strong><%= vehicle.vehicle_types_id %><br>
-  <strong><%= Vehicle.human_attribute_name(:vehicle_categories_id) %>: </strong><%= vehicle.vehicle_categories_id %><br>
-  <strong><%= Vehicle.human_attribute_name(:manufature_year) %>: </strong><%= vehicle.manufature_year %><br>
-  <strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %>: </strong><%= vehicle.maximum_load_capacity %><br>
-  <strong><%= Vehicle.human_attribute_name(:status) %>: </strong><%= I18n.t(vehicle.status) %><br>
+  <strong><%= Vehicle.human_attribute_name(:license_plate) %>: </strong>
+  <%= vehicle.license_plate %><br>
+  <strong><%= Vehicle.human_attribute_name(:manufacturer_vehicle) %>: </strong>
+  <%= @vehicle_types.find(vehicle.vehicle_types_id).manufacturer_vehicle %><br>
+  <strong><%= Vehicle.human_attribute_name(:model_vehicle) %>: </strong>
+  <%= @vehicle_types.find(vehicle.vehicle_types_id).model_vehicle %><br>
+  <strong><%= Vehicle.human_attribute_name(:vehicle_categories_id) %>: </strong>
+  <%= @vehicle_categories.find(vehicle.vehicle_types_id).category %><br>
+  <strong><%= Vehicle.human_attribute_name(:manufature_year) %>: </strong>
+  <%= vehicle.manufature_year %><br>
+  <strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %>: </strong>
+  <%= vehicle.maximum_load_capacity %>kg<br>
+  <strong><%= Vehicle.human_attribute_name(:status) %>: </strong>
+  <%= I18n.t(vehicle.status) %><br>
 </div>
