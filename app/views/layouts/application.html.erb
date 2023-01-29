@@ -10,6 +10,20 @@
   </head>
 
   <body>
-    <%= yield %>
+        <header>
+      <%= link_to root_path do%>
+        <h1> Transportadora</h1>
+      <% end %>
+      <nav>
+        <%= link_to 'Veículos', vehicles_path %> | 
+      </nav>
+    </header>
+    <main>
+      <div>
+        <%= alert %>
+        <%= notice %>
+      </div>
+      <%= yield %>
+    </main>
   </body>
 </html>

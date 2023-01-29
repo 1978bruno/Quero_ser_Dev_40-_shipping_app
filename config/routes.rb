@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :shippings, only: [:show, :new, :create] do
     get 'search', on: :collection
   end
+  resources :vehicles, only: [:index, :create, :new]
 
 end

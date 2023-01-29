@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_162321) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_28_191343) do
   create_table "shippings", force: :cascade do |t|
     t.string "name"
     t.integer "min_dist"
@@ -23,4 +23,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_162321) do
     t.integer "status", default: 0
   end
 
+  create_table "vehicle_categories", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicle_types", force: :cascade do |t|
+    t.string "manufacturer_vehicle"
+    t.string "model_vehicle"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "license_plate"
+    t.integer "vehicle_types_id", null: false
+    t.integer "vehicle_categories_id", null: false
+    t.integer "manufature_year"
+    t.integer "maximum_load_capacity"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["vehicle_categories_id"], name: "index_vehicles_on_vehicle_categories_id"
+    t.index ["vehicle_types_id"], name: "index_vehicles_on_vehicle_types_id"
+  end
+
+  add_foreign_key "vehicles", "vehicle_categories", column: "vehicle_categories_id"
+  add_foreign_key "vehicles", "vehicle_types", column: "vehicle_types_id"
 end
