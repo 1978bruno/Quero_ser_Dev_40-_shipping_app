@@ -18,7 +18,9 @@ describe 'Usuário vê status da frota' do
                     vehicle_types_id: 1, vehicle_categories_id: 1)
   
     visit root_path
-    click_on 'Veículos'
+    within('nav') do
+      click_on 'Veículos'
+    end
 
     expect(page).to have_content 'Sedan médio'
     expect(page).to have_content 'GM'

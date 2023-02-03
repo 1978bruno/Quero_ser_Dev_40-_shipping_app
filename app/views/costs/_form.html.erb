@@ -1,0 +1,18 @@
+<%= form_with(model: Cost.new) do |f| %>
+  <div>
+    <%=f.label :int_min_weight %>
+    <%= f.number_field :int_min_weight %>
+  </div>
+  <div>
+    <%=f.label :int_max_weight %>
+    <%= f.number_field :int_max_weight %>
+  </div>
+  <div>
+    <%=f.label :km_value %>
+    <%= f.number_field :km_value %>
+  </div>
+
+  <div>
+    <%= f.submit 'Cadastrar Custo'  %>
+  </div>
+<% end %>

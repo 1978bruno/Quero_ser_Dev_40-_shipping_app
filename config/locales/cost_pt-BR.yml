@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      cost:  
+        one: 'Custo'
+        other: 'Custos'
+    attributes:
+      cost:
+        int_min_weight: 'Peso mínimo'
+        int_max_weight: 'Peso máximo'
+        km_value: 'Valor por KM'

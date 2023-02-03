@@ -13,7 +13,7 @@ describe 'Usuário visualiza datalhes de uma modalidade de transporte' do
     expect(page).to have_content('Distância mínima: 60km')
     expect(page).to have_content('Distância máxima: 120km')
     expect(page).to have_content('Peso mínimo da carga: 200kg')
-    expect(page).to have_content('Peso mínimo da carga: 800kg')
+    expect(page).to have_content('Peso máximo da carga: 800kg')
     expect(page).to have_content('Tarifa padrão: R$ 250')
 
   end

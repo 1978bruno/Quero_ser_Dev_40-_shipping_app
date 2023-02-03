@@ -17,6 +17,13 @@
       <nav>
         <%= link_to 'Veículos', vehicles_path %> | 
         <%= link_to 'Cadastrar Veículo', new_vehicle_path %> | 
+        <%= link_to 'Cadastrar Custo', new_cost_path %> | 
+        <% if user_signed_in? %>
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete %> |
+          <%= current_user.email %>
+        <% else %>
+          <%= link_to 'Entrar', new_user_session_path %> |
+        <% end %>
       </nav>
     </header>
     <main>
