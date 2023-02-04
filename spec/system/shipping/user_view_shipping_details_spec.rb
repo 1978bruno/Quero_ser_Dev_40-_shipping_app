@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe 'Usuário visualiza datalhes de uma modalidade de transporte' do
+describe 'Usuário visualiza detalhes de uma modalidade de transporte' do
   it 'e vê informações adicionais' do
-    s = Shipping.new(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
+    shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
                      deliv_fee: 250)
-    s.save()
+    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping_id: shipping.id)
    
     visit(root_path)
     click_on('Rio')
@@ -18,9 +18,9 @@ describe 'Usuário visualiza datalhes de uma modalidade de transporte' do
 
   end
   it 'e volta para a tela inicial' do
-    s = Shipping.new(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
+    shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
                     deliv_fee: 250)
-    s.save() 
+    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping_id: shipping.id) 
 
     visit(root_path)
     click_on 'Rio'

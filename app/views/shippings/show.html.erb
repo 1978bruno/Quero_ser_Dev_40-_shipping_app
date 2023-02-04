@@ -1,16 +1,24 @@
 <h1>Transportadora</h1>
 
-  <div>
-    <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br>
-    <strong>Distância mínima:     </strong><%= @shipping.min_dist %>km<br>
-    <strong>Distância máxima:     </strong><%= @shipping.max_dist %>km<br>
-    <strong>Peso mínimo da carga: </strong><%= @shipping.min_weight %>kg<br>
-    <strong>Peso máximo da carga: </strong><%= @shipping.max_weight %>kg<br>
-    <strong>Tarifa padrão:     R$ </strong><%= @shipping.deliv_fee %><br>
-    <strong>Situação:               </strong><%= I18n.t(@shipping.status) %><br><br>
-  <p>-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x</p><br>
-  </div>
+  <table>
+    <td>
+      <div>
+        <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br>
+        <strong>Distância mínima:     </strong><%= @shipping.min_dist %>km<br>
+        <strong>Distância máxima:     </strong><%= @shipping.max_dist %>km<br>
+        <strong>Peso mínimo da carga: </strong><%= @shipping.min_weight %>kg<br>
+        <strong>Peso máximo da carga: </strong><%= @shipping.max_weight %>kg<br>
+        <strong>Tarifa padrão:     R$ </strong><%= @shipping.deliv_fee %><br>
+        <strong>Situação:               </strong><%= I18n.t(@shipping.status) %><br><br>
+      </div>
+    </td>
+    <td>
+        <strong>Menor peso do intervalo:    </strong><%= @cost[:int_min_weight] %>kg<br>
+        <strong>Maior peso do intervalo:    </strong><%= @cost[:int_max_weight] %>kg<br>
+        <strong>Valor do KM:                </strong>R$ <%= @cost[:km_value] %><br>
+    </td>
 
+  </table>
   <div>
     <%= link_to('Voltar', root_path) %>
   </div>

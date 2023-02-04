@@ -1,5 +1,9 @@
 <%= form_with(model: Cost.new) do |f| %>
   <div>
+    <%=f.label :shipping_id, 'Modelo' %>
+    <%= f.collection_select :shipping_id, @shipping, :id, :name %>
+  </div>
+  <div>
     <%=f.label :int_min_weight %>
     <%= f.number_field :int_min_weight %>
   </div>
@@ -13,6 +17,6 @@
   </div>
 
   <div>
-    <%= f.submit 'Cadastrar Custo'  %>
+    <%= f.submit 'Cadastrar'  %>
   </div>
 <% end %>

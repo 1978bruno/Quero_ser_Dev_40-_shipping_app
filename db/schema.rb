@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_02_233633) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_112058) do
   create_table "costs", force: :cascade do |t|
     t.integer "int_min_weight"
     t.integer "int_max_weight"
     t.integer "km_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shipping_id", null: false
+    t.index ["shipping_id"], name: "index_costs_on_shipping_id"
   end
 
   create_table "shippings", force: :cascade do |t|
@@ -70,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_233633) do
     t.index ["vehicle_types_id"], name: "index_vehicles_on_vehicle_types_id"
   end
 
+  add_foreign_key "costs", "shippings"
   add_foreign_key "vehicles", "vehicle_categories", column: "vehicle_categories_id"
   add_foreign_key "vehicles", "vehicle_types", column: "vehicle_types_id"
 end

@@ -2,6 +2,7 @@ class ShippingsController < ApplicationController
   def show
     id = params[:id]
     @shipping = Shipping.find(id)
+    @cost = Cost.find(id)
   end
   def new
     @shipping = Shipping.new()
