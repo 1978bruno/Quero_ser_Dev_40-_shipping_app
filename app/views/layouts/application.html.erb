@@ -18,6 +18,7 @@
         <%= link_to 'Veículos', vehicles_path %> | 
         <%= link_to 'Cadastrar Veículo', new_vehicle_path %> | 
         <%= link_to 'Cadastrar Custo', new_cost_path %> | 
+        <%= link_to 'Cadastrar Prazo', new_deliv_term_path %> | 
         <% if user_signed_in? %>
           <%= button_to 'Sair', destroy_user_session_path, method: :delete %> |
           <%= current_user.email %>

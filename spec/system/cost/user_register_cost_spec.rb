@@ -27,10 +27,11 @@ describe 'Usuário parametriza relação preço X peso' do
   end
   it 'com sucesso' do
     User.create!(name: 'Bruno', email:'bruno@email.com', password:'password')
-    Shipping.create!(name: 'BH', min_dist: 160, max_dist: 1120, min_weight: 1200, max_weight: 1800, 
+    shipping1 = Shipping.create!(name: 'BH', min_dist: 160, max_dist: 1120, min_weight: 1200, max_weight: 1800, 
                     deliv_fee: 1250)
-    Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
+    shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
                     deliv_fee: 250)
+    DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15, shipping: shipping)
 
     visit root_path
     click_on ('Cadastrar Custo')

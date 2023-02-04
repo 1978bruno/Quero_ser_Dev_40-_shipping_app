@@ -1,0 +1,11 @@
+pt-BR:
+  activerecord:
+    models:
+      deliv_term:  
+        one: 'Prazo de entrega'
+        other: 'Prazos de entrega'
+    attributes:
+      deliv_term:
+        term_int_min_weight: 'Peso mínimo'
+        term_int_max_weight: 'Peso máximo'
+        deliv_term: 'Prazo de entrega'

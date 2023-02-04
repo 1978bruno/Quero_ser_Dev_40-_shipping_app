@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_112058) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_152349) do
   create_table "costs", force: :cascade do |t|
     t.integer "int_min_weight"
     t.integer "int_max_weight"
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_112058) do
     t.datetime "updated_at", null: false
     t.integer "shipping_id", null: false
     t.index ["shipping_id"], name: "index_costs_on_shipping_id"
+  end
+
+  create_table "deliv_terms", force: :cascade do |t|
+    t.integer "term_int_min_weight"
+    t.integer "term_int_max_weight"
+    t.integer "deliv_term"
+    t.integer "shipping_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shipping_id"], name: "index_deliv_terms_on_shipping_id"
   end
 
   create_table "shippings", force: :cascade do |t|
@@ -73,6 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_112058) do
   end
 
   add_foreign_key "costs", "shippings"
+  add_foreign_key "deliv_terms", "shippings"
   add_foreign_key "vehicles", "vehicle_categories", column: "vehicle_categories_id"
   add_foreign_key "vehicles", "vehicle_types", column: "vehicle_types_id"
 end

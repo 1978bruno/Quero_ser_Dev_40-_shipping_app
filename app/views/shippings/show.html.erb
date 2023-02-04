@@ -13,9 +13,16 @@
       </div>
     </td>
     <td>
+      <div>
         <strong>Menor peso do intervalo:    </strong><%= @cost[:int_min_weight] %>kg<br>
         <strong>Maior peso do intervalo:    </strong><%= @cost[:int_max_weight] %>kg<br>
         <strong>Valor do KM:                </strong>R$ <%= @cost[:km_value] %><br>
+      </div>
+      <div>
+        <strong>Menor peso do intervalo:    </strong><%= @deliv_term[:term_int_min_weight] %>kg<br>
+        <strong>Maior peso do intervalo:    </strong><%= @deliv_term[:term_int_max_weight] %>kg<br>
+        <strong>Prazo de entrega:           </strong><%= @deliv_term[:deliv_term] %> dias<br>
+      </div>
     </td>
 
   </table>

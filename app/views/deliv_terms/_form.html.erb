@@ -1,0 +1,22 @@
+<%= form_with(model: DelivTerm.new) do |f| %>
+  <div>
+    <%=f.label :shipping_id, 'Modelo' %>
+    <%= f.collection_select :shipping_id, @shipping, :id, :name %>
+  </div>
+  <div>
+    <%=f.label :term_int_min_weight %>
+    <%= f.number_field :term_int_min_weight %>
+  </div>
+  <div>
+    <%=f.label :term_int_max_weight %>
+    <%= f.number_field :term_int_max_weight %>
+  </div>
+  <div>
+    <%=f.label :deliv_term %>
+    <%= f.number_field :deliv_term %>
+  </div>
+
+  <div>
+    <%= f.submit 'Cadastrar'  %>
+  </div>
+<% end %>

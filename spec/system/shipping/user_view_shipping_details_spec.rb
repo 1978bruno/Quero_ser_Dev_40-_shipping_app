@@ -4,7 +4,9 @@ describe 'Usuário visualiza detalhes de uma modalidade de transporte' do
   it 'e vê informações adicionais' do
     shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
                      deliv_fee: 250)
-    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping_id: shipping.id)
+    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping: shipping)
+    DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15, shipping: shipping)
+    
    
     visit(root_path)
     click_on('Rio')
@@ -20,7 +22,8 @@ describe 'Usuário visualiza detalhes de uma modalidade de transporte' do
   it 'e volta para a tela inicial' do
     shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800, 
                     deliv_fee: 250)
-    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping_id: shipping.id) 
+    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping: shipping)
+    DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15, shipping: shipping)
 
     visit(root_path)
     click_on 'Rio'

@@ -62,10 +62,14 @@ describe 'Usuário busca pela modalidade' do
                     deliv_fee: 2000, status: 1)
     shipping4 = Shipping.create!(name: 'Maceio', min_dist: 301, max_dist: 400, min_weight: 100, max_weight: 500, 
                     deliv_fee: 3000, status: 0)
-    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping_id: shipping1.id)
-    Cost.create!(int_min_weight: 1125, int_max_weight: 1150, km_value: 115, shipping_id: shipping2.id)
-    Cost.create!(int_min_weight: 2125, int_max_weight: 2150, km_value: 215, shipping_id: shipping3.id)
-    Cost.create!(int_min_weight: 3125, int_max_weight: 3150, km_value: 315, shipping_id: shipping4.id)
+    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping: shipping1)
+    Cost.create!(int_min_weight: 1125, int_max_weight: 1150, km_value: 115, shipping: shipping2)
+    Cost.create!(int_min_weight: 2125, int_max_weight: 2150, km_value: 215, shipping: shipping3)
+    Cost.create!(int_min_weight: 3125, int_max_weight: 3150, km_value: 315, shipping: shipping4)
+    DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15, shipping: shipping1)
+    DelivTerm.create!(term_int_min_weight: 1125, term_int_max_weight: 1150, deliv_term: 115, shipping: shipping2)
+    DelivTerm.create!(term_int_min_weight: 2125, term_int_max_weight: 2150, deliv_term: 215, shipping: shipping3)
+    DelivTerm.create!(term_int_min_weight: 3125, term_int_max_weight: 3150, deliv_term: 315, shipping: shipping4)
 
     visit root_path
     fill_in 'Buscar Modalidade', with: 'Rio'

@@ -1,8 +1,8 @@
 class ShippingsController < ApplicationController
   def show
-    id = params[:id]
-    @shipping = Shipping.find(id)
-    @cost = Cost.find(id)
+    @shipping = Shipping.find(params[:id])
+    @cost = Cost.find_by(shipping: params[:id])
+    @deliv_term = DelivTerm.find_by(shipping: params[:id])
   end
   def new
     @shipping = Shipping.new()

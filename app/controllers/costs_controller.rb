@@ -1,7 +1,5 @@
 class CostsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  def index  
-  end
   def new
     @shipping = Shipping.all
     @cost = Cost.new()
@@ -12,6 +10,7 @@ class CostsController < ApplicationController
     @shipping = Shipping.find(cost_params[:shipping_id])
     if @cost.save
       flash.now[:notice] = 'Cadastro realizado com sucesso'
+      @deliv_term = DelivTerm.find_by(shipping_id: cost_params[:shipping_id])
       render 'shippings/show'
     else
       @shipping = Shipping.all
