@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_152349) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_114453) do
   create_table "costs", force: :cascade do |t|
     t.integer "int_min_weight"
     t.integer "int_max_weight"
@@ -29,6 +29,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_152349) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shipping_id"], name: "index_deliv_terms_on_shipping_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "code"
+    t.string "collect_street"
+    t.integer "collect_number"
+    t.string "collect_nhood"
+    t.string "collect_city"
+    t.string "collect_state"
+    t.integer "width"
+    t.integer "height"
+    t.integer "depth"
+    t.integer "weight"
+    t.string "deliv_reipient"
+    t.string "deliv_street"
+    t.integer "deliv_number"
+    t.string "deliv_nhood"
+    t.string "deliv_city"
+    t.string "deliv_state"
+    t.integer "km_dist"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "deliv_zip"
+    t.integer "collect_zip"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "shippings", force: :cascade do |t|
@@ -84,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_152349) do
 
   add_foreign_key "costs", "shippings"
   add_foreign_key "deliv_terms", "shippings"
+  add_foreign_key "orders", "users"
   add_foreign_key "vehicles", "vehicle_categories", column: "vehicle_categories_id"
   add_foreign_key "vehicles", "vehicle_types", column: "vehicle_types_id"
 end

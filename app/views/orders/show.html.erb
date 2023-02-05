@@ -1,0 +1,22 @@
+<h1>Fretes</h1>
+
+
+  <div>
+    <strong>Código de rastreio:   </strong><%= @order.code %><br>
+    <strong>Endereço de entrega:  </strong><%= @order.collect_street %>, </strong><%= @order.collect_number %> - <%= @order.collect_nhood %><br>
+    <strong>                      </strong><%= @order.collect_city %> - <%= @order.collect_state %><br>
+    <strong>Dimensões do produto: </strong><%= @order.height %>cm X <%= @order.width %><br>cm X <%= @order.depth %>cm<br>
+    <strong>Peso do produto:      </strong><%= @order.weight %>kg<br>
+    <strong>Nome do destinatário: </strong><%= @order.deliv_reipient %><br>
+    <strong>Endereço de destino:  </strong><%= @order.deliv_street %>, <%= @order.deliv_number %> - <%= @order.deliv_nhood %><br>
+    <strong>                      </strong><%= @order.deliv_city %> - <%= @order.deliv_state %><br>
+    <strong>Distância de entrega: </strong><%= @order.km_dist %>km<br>
+
+  </div>
+
+
+  <div>
+    <%= link_to('Voltar', root_path) %>
+  </div>
+
+  

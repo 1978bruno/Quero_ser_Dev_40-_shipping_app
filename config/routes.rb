@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :vehicles, only: [:index, :create, :new]
   resources :costs, only: [:create, :new]
   resources :deliv_terms, only: [:create, :new]
-
+  resources :orders, only: [:create, :new, :show]
 end

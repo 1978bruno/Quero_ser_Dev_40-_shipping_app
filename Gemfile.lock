@@ -100,6 +100,10 @@ GEM
     diff-lcs (1.5.0)
     erubi (1.12.0)
     execjs (2.8.1)
+    faraday (2.7.4)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
     ffi (1.15.5)
     globalid (1.0.0)
       activesupport (>= 5.0)
@@ -192,6 +196,7 @@ GEM
       rspec-mocks (~> 3.11)
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
+    ruby2_keywords (0.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -230,6 +235,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+  faraday
   puma (~> 5.0)
   rails (~> 7.0.4)
   rspec-rails

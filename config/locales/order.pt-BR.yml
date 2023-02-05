@@ -1,0 +1,30 @@
+pt-BR:
+  activerecord:
+    models:
+      order:  
+        one: 'Pedido'
+        other: 'Pedidos'
+    attributes:
+      order:
+        code: 'Código identificador'
+        collect_street: 'Endereço de coleta'
+        collect_number: 'Número de coleta'
+        collect_nhood: 'Bairro de coleta'
+        collect_city: 'Cidade de coleta'
+        collect_state: 'Estado de coleta'
+        width: 'Largura'
+        height: 'Altura'
+        depth: 'Profundidade'
+        weight: 'Peso'
+        deliv_reipient: 'Nome do destinatário'
+        deliv_street: 'Endereço de entrega'
+        deliv_number: 'Número de entrega'
+        deliv_nhood: 'Bairro de entrega'
+        deliv_city: 'Cidade de entrega'
+        deliv_state: 'Estado de entrega'
+        km_dist: 'Distância em KM'
+        email: 'E-mail'
+        password: 'Senha'
+        name: 'Nome'
+        deliv_zip: 'CEP de entrega'
+        collect_zip: 'CEP de coleta'

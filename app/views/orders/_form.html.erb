@@ -1,0 +1,84 @@
+<%= form_with(model: Order.new) do |f| %>
+  <div>
+    <%=f.label :collect_zip %>
+    <%= f.number_field :collect_zip %>
+  </div>
+  <div>
+    <%=f.label :collect_street %>
+    <%= f.text_field :collect_street %>
+  </div>
+  <div>
+    <%=f.label :collect_number %>
+    <%= f.number_field :collect_number %>
+  </div>
+  <div>
+    <%=f.label :collect_nhood %>
+    <%= f.text_field :collect_nhood %>
+  </div>
+  <div>
+    <%=f.label :collect_state %>
+    <%= f.text_field :collect_state %>
+  </div>
+    <div>
+    <%=f.label :collect_city %>
+    <%= f.text_field :collect_city %>
+  </div>
+    <div>
+    <%=f.label :width %>
+    <%= f.number_field :width %>
+  </div>
+  <div>
+    <%=f.label :height %>
+    <%= f.number_field :height %>
+  </div>
+    <div>
+    <%=f.label :depth %>
+    <%= f.number_field :depth %>
+  </div>
+    <div>
+    <%=f.label :weight %>
+    <%= f.number_field :weight %>
+  </div>
+  <div>
+    <%=f.label :deliv_reipient %>
+    <%= f.text_field :deliv_reipient %>
+  </div>
+  <div>
+    <%=f.label :deliv_zip %>
+    <%= f.number_field :deliv_zip %>
+  </div>
+  <div>
+    <%=f.label :deliv_street %>
+    <%= f.text_field :deliv_street %>
+  </div>
+  <div>
+    <%=f.label :deliv_number %>
+    <%= f.text_field :deliv_number %>
+  </div>
+  <div>
+    <%=f.label :deliv_nhood %>
+    <%= f.text_field :deliv_nhood %>
+  </div>
+  <div>
+    <%=f.label :deliv_city %>
+    <%= f.text_field :deliv_city %>
+  </div>
+   <div>
+    <%=f.label :deliv_state %>
+    <%= f.text_field :deliv_state %>
+  </div>
+  <div>
+    <%=f.label :km_dist %>
+    <%= f.text_field :km_dist %>
+  </div>
+  <div>
+    <%= f.submit 'Cadastrar'  %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
