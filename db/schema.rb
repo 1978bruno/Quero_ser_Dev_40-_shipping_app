@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_114453) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_05_184642) do
   create_table "costs", force: :cascade do |t|
     t.integer "int_min_weight"
     t.integer "int_max_weight"
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_114453) do
     t.integer "deliv_zip"
     t.integer "collect_zip"
     t.integer "user_id", null: false
+    t.integer "status", default: 0
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 

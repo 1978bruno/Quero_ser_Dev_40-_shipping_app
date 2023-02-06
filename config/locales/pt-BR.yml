@@ -5,3 +5,6 @@ pt-BR:
     other: 'Encontrados'
   activated: 'ativo'
   disabled: 'inativo'
+  pending: 'pendente'
+  delivered: 'entregue'
+  canceled: 'cancelada'

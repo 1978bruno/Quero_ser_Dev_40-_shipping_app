@@ -28,3 +28,4 @@ pt-BR:
         name: 'Nome'
         deliv_zip: 'CEP de entrega'
         collect_zip: 'CEP de coleta'
+        status: 'Situação'

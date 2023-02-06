@@ -1,11 +1,11 @@
 <h1>Transportadora - Veículos</h1>
 
-<% @vehicles.each do |vehicle| %>
-  <%= render vehicle %>
-<% end %>
-
 <% if @vehicles.empty? %>
   <p> Nenhum veículo cadastrado</p>
+<% else %>
+  <% @vehicles.each do |vehicle| %>
+    <%= render vehicle %>
+  <% end %>
 <% end %>
   
 <div>

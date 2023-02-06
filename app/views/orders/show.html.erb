@@ -2,15 +2,41 @@
 
 
   <div>
-    <strong>Código de rastreio:   </strong><%= @order.code %><br>
-    <strong>Endereço de entrega:  </strong><%= @order.collect_street %>, </strong><%= @order.collect_number %> - <%= @order.collect_nhood %><br>
-    <strong>                      </strong><%= @order.collect_city %> - <%= @order.collect_state %><br>
-    <strong>Dimensões do produto: </strong><%= @order.height %>cm X <%= @order.width %><br>cm X <%= @order.depth %>cm<br>
-    <strong>Peso do produto:      </strong><%= @order.weight %>kg<br>
-    <strong>Nome do destinatário: </strong><%= @order.deliv_reipient %><br>
-    <strong>Endereço de destino:  </strong><%= @order.deliv_street %>, <%= @order.deliv_number %> - <%= @order.deliv_nhood %><br>
-    <strong>                      </strong><%= @order.deliv_city %> - <%= @order.deliv_state %><br>
-    <strong>Distância de entrega: </strong><%= @order.km_dist %>km<br>
+    <strong><%= Order.human_attribute_name(:code) %>: </strong>
+    <%= @order.code %></dd><br>
+    <strong><%= Order.human_attribute_name(:collect_zip) %>: </strong>
+    <%= @order.collect_zip %><br>
+    <strong><%= Order.human_attribute_name(:collect_street) %>: </strong>
+    <%= @order.collect_street %>, <%= @order.collect_number %> - <%= @order.collect_nhood %><br>
+    <%= @order.collect_city %> - <%= @order.collect_state %><br>
+    <strong>Dimensões do produto: </strong>
+    <%= @order.width %>cm X <%= @order.height %>cm X <%= @order.depth %>cm<br>
+    <strong><%= Order.human_attribute_name(:weight) %>: </strong>
+    <%= @order.weight %>kg<br>
+    <strong><%= Order.human_attribute_name(:deliv_reipient) %>: </strong>
+    <%= @order.deliv_reipient %><br>
+    <strong><%= Order.human_attribute_name(:deliv_zip) %>: </strong>
+    <%= @order.deliv_zip %><br>
+    <strong><%= Order.human_attribute_name(:deliv_street) %>: </strong>
+    <%= @order.deliv_street %>, <%= @order.deliv_number %> - <%= @order.deliv_nhood %><br>
+    <%= @order.deliv_city %> -  <%= @order.deliv_state %><br>
+    <strong><%= Order.human_attribute_name(:km_dist) %>: </strong>
+    <%= @order.km_dist %>km<br>
+      <strong><%= Order.human_attribute_name(:status) %>: </strong>
+    <%= I18n.t(@order.status) %><br>
+  </div>
+  <div>
+
+    <p> Valor e prazo de entrega</p>
+
+    <div>
+      <strong>Modalidade de transporte:   </strong><%= @shipping_name %><br>
+      <strong>Pedido criado por:          </strong><%= @user.name %><br>
+      <strong>Tempo total da operação:    </strong><%= @value_deliv %><br>
+      <strong>Valor total da operação:    </strong>R$ <%= @value_km %>,00 (Valor do km rodado: R$ 0,<%= @cost_km %>)<br>
+      <strong>Valor de taxa de entrega:   </strong>R$ <%= @cost_fee %>,00<br>
+      <strong>Tempo total da operação:    </strong><%= @term_deliv %><br>
+    </div>
 
   </div>
 

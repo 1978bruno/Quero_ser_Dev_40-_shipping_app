@@ -1,0 +1,14 @@
+<h1>Lista de pedidos em aberto</h1>
+
+
+<% if @order.empty? %>
+  <p> Nenhum veículo cadastrado</p>
+<% else %>
+  <% @order.each do |order| %>
+    <%= render order %>
+  <% end %>
+<% end %>
+  
+<div>
+  <%= link_to('Voltar', root_path) %>
+</div>
