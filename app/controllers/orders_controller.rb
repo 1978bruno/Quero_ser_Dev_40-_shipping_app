@@ -1,17 +1,36 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def new
-    @order = Order.new
+    @order = Order.new      
   end
   def create
     order_params = params.require(:order).permit(:collect_street, :collect_number, :collect_nhood, :collect_city, :collect_state, :width, :height, :depth, :weight,
                                                 :deliv_reipient, :deliv_street, :deliv_number, :deliv_nhood, :deliv_city, :deliv_state, :km_dist, :deliv_zip, :collect_zip)
     @order = Order.new(order_params)
     @order.user_id = current_user.id
+
     if @order.save
       redirect_to @order, notice: 'Pedido registrado com sucesso'
     else
-      flash.now[:alert] = 'Não foi possível registrar o pedido'
+      if @order.collect_street.empty? || @order.deliv_street.empty?
+        if @order.collect_zip.present?
+          api_collect = JSON.parse(Faraday.get("https://viacep.com.br/ws/#{@order.collect_zip}/json/").body)
+          @order.collect_street = api_collect["logradouro"]
+          @order.collect_nhood = api_collect["bairro"]
+          @order.collect_city = api_collect["localidade"]
+          @order.collect_state = api_collect["uf"]
+        end
+        if  @order.deliv_zip.present?
+          api_deliv = JSON.parse(Faraday.get("https://viacep.com.br/ws/#{@order.deliv_zip}/json/").body)
+          @order.deliv_street = api_deliv["logradouro"]
+          @order.deliv_nhood = api_deliv["bairro"]
+          @order.deliv_city = api_deliv["localidade"]
+          @order.deliv_state = api_deliv["uf"]
+        end
+        @order.errors.clear
+      else
+        flash.now[:alert] = 'Não foi possível registrar o pedido'
+      end
       render :new
     end
   end
@@ -20,7 +39,6 @@ class OrdersController < ApplicationController
     @user = User.find(params[:id])
     shipping = Shipping.where(["min_weight < ? and max_weight > ?", @order.weight, @order.weight])
     if shipping.empty?
-
     else
       shipping_id = shipping[0]["id"]
       @shipping_name = shipping[0]["name"]
@@ -31,7 +49,6 @@ class OrdersController < ApplicationController
       @cost_fee = shipping[0]["deliv_fee"]
       @value_km = @order.km_dist * @cost_km/100 + @cost_fee
     end
-
   end
   def index
     @order = Order.where("status LIKE ?", 0)

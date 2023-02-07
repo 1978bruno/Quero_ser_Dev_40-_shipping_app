@@ -1,7 +1,7 @@
-<%= form_with(model: Order.new) do |f| %>
+<%= form_with(model: @order) do |f| %>
   <div>
     <%=f.label :collect_zip %>
-    <%= f.number_field :collect_zip %>
+    <%= f.number_field :collect_zip %><%= f.submit 'Endereço de coleta'  %>
   </div>
   <div>
     <%=f.label :collect_street %>
@@ -45,7 +45,7 @@
   </div>
   <div>
     <%=f.label :deliv_zip %>
-    <%= f.number_field :deliv_zip %>
+    <%= f.number_field :deliv_zip %><%= f.submit 'Endereço de entrega'  %>
   </div>
   <div>
     <%=f.label :deliv_street %>
