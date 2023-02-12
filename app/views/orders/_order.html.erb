@@ -1,26 +1,28 @@
-<div>
-  <strong><%= Order.human_attribute_name(:code) %>: </strong>
-  <%= link_to order.code, order %></dd><br>
-  <strong><%= Order.human_attribute_name(:collect_zip) %>: </strong>
-  <%= order.collect_zip %><br>
-  <strong><%= Order.human_attribute_name(:collect_street) %>: </strong>
-  <%= order.collect_street %>, <%= order.collect_number %> - <%= order.collect_nhood %><br>
-  <%= order.collect_city %> - <%= order.collect_state %><br>
-  <strong>Dimensões do produto: </strong>
-  <%= order.width %>cm X <%= order.height %>cm X <%= order.depth %>cm<br>
-  <strong><%= Order.human_attribute_name(:weight) %>: </strong>
-  <%= order.weight %>kg<br>
-  <strong><%= Order.human_attribute_name(:deliv_reipient) %>: </strong>
-  <%= order.deliv_reipient %><br>
-  <strong><%= Order.human_attribute_name(:deliv_zip) %>: </strong>
-  <%= order.deliv_zip %><br>
-  <strong><%= Order.human_attribute_name(:deliv_street) %>: </strong>
-  <%= order.deliv_street %>, <%= order.deliv_number %> - <%= order.deliv_nhood %><br>
-  <%= order.deliv_city %> -  <%= order.deliv_state %><br>
-  <strong><%= Order.human_attribute_name(:km_dist) %>: </strong>
-  <%= order.km_dist %><br>
-    <strong><%= Order.human_attribute_name(:status) %>: </strong>
-  <%= I18n.t(order.status) %><br>
-
-  <p>-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x</p><br>
+<div class="card" style="width: 28rem;">
+  <div class="card-body">
+    <h5 class="card-title" align="center"><strong><%= Order.human_attribute_name(:code)  %>: </strong></h5>
+    <h6 class="card-subtitle mb-2 text-muted" align="center"><%= link_to order.code, order %></h6>
+    <p class="card-text">
+      <strong><%= Order.human_attribute_name(:collect_zip) %>: </strong>
+      <%= order.collect_zip %><br>
+      <strong><%= Order.human_attribute_name(:collect_street) %>: </strong>
+      <%= order.collect_street %>, <%= order.collect_number %> - <%= order.collect_nhood %><br>
+      <%= order.collect_city %> - <%= order.collect_state %><br>
+      <strong>Dimensões do produto: </strong>
+      <%= order.width %>cm X <%= order.height %>cm X <%= order.depth %>cm<br>
+      <strong><%= Order.human_attribute_name(:weight) %>: </strong>
+      <%= order.weight %>kg<br>
+      <strong><%= Order.human_attribute_name(:deliv_reipient) %>: </strong>
+      <%= order.deliv_reipient %><br>
+      <strong><%= Order.human_attribute_name(:deliv_zip) %>: </strong>
+      <%= order.deliv_zip %><br>
+      <strong><%= Order.human_attribute_name(:deliv_street) %>: </strong>
+      <%= order.deliv_street %>, <%= order.deliv_number %> - <%= order.deliv_nhood %><br>
+      <%= order.deliv_city %> -  <%= order.deliv_state %><br>
+      <strong><%= Order.human_attribute_name(:km_dist) %>: </strong>
+      <%= order.km_dist %><br>
+      <strong><%= Order.human_attribute_name(:status) %>: </strong>
+      <%= I18n.t(order.status) %><br>
+    </p>
+  </div>
 </div>

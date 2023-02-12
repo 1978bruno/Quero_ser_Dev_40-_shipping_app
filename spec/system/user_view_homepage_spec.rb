@@ -2,14 +2,10 @@ require 'rails_helper'
 
 describe 'Usuário visualiza tela inicial da Transportadora' do
   it 'e vê o nome do app' do
-    # arrange
 
-    # act
     visit(root_path)
 
-    #assert
     expect(page).to have_content('Transportadora')
-
   end
 
   it 'e vê as modalidade de transportes cadastras' do
@@ -21,15 +17,14 @@ describe 'Usuário visualiza tela inicial da Transportadora' do
     visit(root_path)
 
     expect(page).not_to have_content('Não existe modalidades de transportes cadastrados')
-    expect(page).to have_content('Nome da Modalidade: Rio')
+    expect(page).to have_content('Rio')
     expect(page).to have_content('Distância mínima: 60km')
     expect(page).to have_content('Distância máxima: 120km')
     expect(page).not_to have_content('Peso mínimo da carga: 200kg')
     expect(page).not_to have_content('Peso mínimo da carga: 800kg')
     expect(page).not_to have_content('Tarifa padrão: R$ 250')
     expect(page).to have_content("Situação: inativo")
-
-    expect(page).to have_content('Nome da Modalidade: Maceio')
+    expect(page).to have_content('Maceio')
     expect(page).to have_content('Distância mínima: 70km')
     expect(page).to have_content('Distância máxima: 200km')
     expect(page).not_to have_content('Peso mínimo da carga: 100kg')
@@ -37,14 +32,12 @@ describe 'Usuário visualiza tela inicial da Transportadora' do
     expect(page).not_to have_content('Tarifa padrão: R$ 1000')
     expect(page).to have_content("Situação: ativo")
   end
-
   it 'e não existe modalidade de transportes cadastras' do
     
     
     visit(root_path)
 
     expect(page).not_to have_content('Não existe modalidades de transportes cadastrados')
-
   end
 
 end

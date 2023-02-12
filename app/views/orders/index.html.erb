@@ -1,12 +1,16 @@
-<h1>Lista de pedidos em aberto</h1>
+<h1 align="center">Lista de pedidos em aberto</h1>
 
 
 <% if @order.empty? %>
   <p> Nenhum veículo cadastrado</p>
 <% else %>
-  <% @order.each do |order| %>
-    <%= render order %>
-  <% end %>
+  <div class="row">
+    <% @order.each do |order| %>
+      <div class="col-3">
+        <%= render order %>
+      </div>
+    <% end %>
+</div>
 <% end %>
   
 <div>

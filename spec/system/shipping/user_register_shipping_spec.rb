@@ -42,7 +42,7 @@ describe 'Usuário cadastra nova modalidade de transporte' do
     fill_in 'Peso mínimo',      with: '300'
     fill_in 'Peso máximo',      with: '1500'
     fill_in 'Tarifa de entrega', with: '2500'
-    page.check('Status')         
+    page.check('Situação')         
     click_on 'Enviar'
 
   end

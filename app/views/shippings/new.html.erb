@@ -2,31 +2,31 @@
 
 <%= form_with(model: Shipping.new) do |f| %>
   <div>
-    <%=f.label :name, 'Nome' %>
+    <%=f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div>
-    <%=f.label :min_dist, 'Distância mínima' %>
+    <%=f.label :min_dist %>
     <%= f.number_field :min_dist %>
   </div>
   <div>
-    <%=f.label :max_dist, 'Distância máxima' %>
+    <%=f.label :max_dist %>
     <%= f.number_field :max_dist %>
   </div>
   <div>
-    <%=f.label :min_weight, 'Peso mínimo' %>
+    <%=f.label :min_weight %>
     <%= f.number_field :min_weight %>
   </div>
   <div>
-    <%=f.label :max_weight, 'Peso máximo' %>
+    <%=f.label :max_weight %>
     <%= f.number_field :max_weight %>
   </div>
   <div>
-    <%=f.label :deliv_fee, 'Tarifa de entrega' %>
+    <%=f.label :deliv_fee %>
     <%= f.number_field :deliv_fee %>
   </div>
   <div>
-    <%= f.label :status, 'Status' %>
+    <%= f.label :status %>
     <%= f.check_box :status %>
 
   </div>

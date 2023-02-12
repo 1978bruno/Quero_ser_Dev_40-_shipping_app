@@ -1,6 +1,5 @@
 class Order < ApplicationRecord
-
-  enum status: { pending: 0, delivered: 1, canceled: 2 }
+  enum status: { pending: 0, delivered: 1, canceled: 2, delivering: 3 }
 
   validates :code, :collect_zip, :collect_number, :width, :height, :depth, :weight,
            :deliv_reipient, :deliv_zip, :km_dist, presence: true

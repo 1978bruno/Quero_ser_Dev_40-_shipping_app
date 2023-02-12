@@ -1,4 +1,4 @@
-<h1>Transportadora</h1>
+<h2>Lista de modalidades</h2>
 <div>
   <%= link_to('Cadastrar modalidade', new_shipping_path) %>
 </div>
@@ -7,19 +7,26 @@
     <%= form.label :query, "Buscar Modalidade" %>
     <%= form.text_field :query %>
     <%= form.submit "Buscar" %>
+  <% end %><br><br>
+</div>
+<div class="row">
+  <% @shippings.each do |s| %>
+    <div class="col-2">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title" align="center"><strong><%= Shipping.human_attribute_name(:name)  %> </strong></h5>
+          <h6 class="card-subtitle mb-2 text-muted" align="center"><%= link_to s.name,  shipping_path(s.id) %></h6>
+          <p class="card-text">
+          <strong><%= Shipping.human_attribute_name(:min_dist) %>:   </strong><%= s.min_dist %>km<br>
+          <strong><%= Shipping.human_attribute_name(:max_dist) %>:   </strong><%= s.max_dist %>km<br>
+          <strong><%= Shipping.human_attribute_name(:status) %>:     </strong><%= I18n.t(s.status) %><br>
+        </div>
+      </div>
+    </div>
   <% end %>
 </div>
-<% @shippings.each do |s| %>
-  <div>
-    <strong>Nome da Modalidade: </strong><%= link_to(s.name, shipping_path(s.id)) %><br>
-    <strong>Distância mínima:   </strong><%= s.min_dist %>km<br>
-    <strong>Distância máxima:   </strong><%= s.max_dist %>km<br>
-    <strong>Situação:           </strong><%= I18n.t(s.status) %><br>
-  <p>-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x</p><br>
-  </div>
-  <div>
-    <% if @shippings.empty? %>
-      <p>Não existe modalidades de transportes cadastrados</p>
-    <% end %>
-  </div>
-<% end %>
+<div>
+  <% if @shippings.empty? %>
+    <p>Não existe detalhes de custo e prazo cadastrados</p>
+  <% end %>
+</div>

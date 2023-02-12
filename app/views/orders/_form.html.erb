@@ -1,78 +1,89 @@
 <%= form_with(model: @order) do |f| %>
-  <div>
-    <%=f.label :collect_zip %>
-    <%= f.number_field :collect_zip %><%= f.submit 'Endereço de coleta'  %>
+  <div class="row">
+    <div class="col-2"><%=f.label :collect_zip, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :collect_zip, {class: 'form-control', 'aria-describedby': "orderCodeHelp" } %>
+                            <div id="orderCodeHelp" class="form-text">
+                              informar o CEP com somente números, sem caracteres ou letras.
+                            </div>
+    </div>
+    <div class="col-2"><%= f.submit 'Endereço de coleta', class: "btn btn-light"%></div>
+    
   </div>
-  <div>
-    <%=f.label :collect_street %>
-    <%= f.text_field :collect_street %>
+  <div class="row">
+    <div class="col-2"><%=f.label :collect_street, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :collect_street, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :collect_number %>
-    <%= f.number_field :collect_number %>
+  <div class="row">
+    <div class="col-2"><%=f.label :collect_number, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :collect_number, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :collect_nhood %>
-    <%= f.text_field :collect_nhood %>
+  <div class="row">
+    <div class="col-2"><%=f.label :collect_nhood, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :collect_nhood, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :collect_state %>
-    <%= f.text_field :collect_state %>
+  <div class="row">
+    <div class="col-2"><%=f.label :collect_state, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :collect_state, class: 'form-control' %></div>
   </div>
-    <div>
-    <%=f.label :collect_city %>
-    <%= f.text_field :collect_city %>
+  <div class="row">
+    <div class="col-2"><%=f.label :collect_city, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :collect_city, class: 'form-control' %></div>
   </div>
-    <div>
-    <%=f.label :width %>
-    <%= f.number_field :width %>
+  <div class="row">
+    <div class="col-2"><%=f.label :width, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :width, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :height %>
-    <%= f.number_field :height %>
+  <div class="row">
+    <div class="col-2"><%=f.label :height, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :height, class: 'form-control' %></div>
   </div>
-    <div>
-    <%=f.label :depth %>
-    <%= f.number_field :depth %>
+  <div class="row">
+    <div class="col-2"><%=f.label :depth, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :depth, class: 'form-control' %></div>
   </div>
-    <div>
-    <%=f.label :weight %>
-    <%= f.number_field :weight %>
+  <div class="row">
+    <div class="col-2"><%=f.label :weight, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :weight, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :deliv_reipient %>
-    <%= f.text_field :deliv_reipient %>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_reipient, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :deliv_reipient, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :deliv_zip %>
-    <%= f.number_field :deliv_zip %><%= f.submit 'Endereço de entrega'  %>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_zip, class: "form-label" %></div>
+    <div class="col-4"><%= f.number_field :deliv_zip, {class: 'form-control', 'aria-describedby': "orderCodeHelp" } %>
+                            <div id="orderCodeHelp" class="form-text">
+                              informar o CEP com somente números, sem caracteres ou letras.
+                            </div>
+    </div>
+    <div class="col-2"><%= f.submit 'Endereço de entrega', class: "btn btn-light"%></div>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_street, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :deliv_street, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :deliv_street %>
-    <%= f.text_field :deliv_street %>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_number, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :deliv_number, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :deliv_number %>
-    <%= f.text_field :deliv_number %>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_nhood, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :deliv_nhood, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :deliv_nhood %>
-    <%= f.text_field :deliv_nhood %>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_city, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :deliv_city, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :deliv_city %>
-    <%= f.text_field :deliv_city %>
+  <div class="row">
+    <div class="col-2"><%=f.label :deliv_state, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :deliv_state, class: 'form-control' %></div>
   </div>
-   <div>
-    <%=f.label :deliv_state %>
-    <%= f.text_field :deliv_state %>
+  <div class="row">
+    <div class="col-2"><%=f.label :km_dist, class: "form-label" %></div>
+    <div class="col-4"><%= f.text_field :km_dist, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :km_dist %>
-    <%= f.text_field :km_dist %>
-  </div>
-  <div>
-    <%= f.submit 'Cadastrar'  %>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-5"><%= f.submit 'Cadastrar', class: "btn btn-light"  %></div>
   </div>
 <% end %>
 

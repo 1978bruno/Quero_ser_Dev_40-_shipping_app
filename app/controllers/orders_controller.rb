@@ -36,18 +36,22 @@ class OrdersController < ApplicationController
   end
   def show
     @order = Order.find(params[:id])
-    @user = User.find(params[:id])
-    shipping = Shipping.where(["min_weight < ? and max_weight > ?", @order.weight, @order.weight])
-    if shipping.empty?
+    @user = User.find(@order.user_id)
+    @shippings = Shipping.where(["min_weight < ? and max_weight > ?", @order.weight, @order.weight])
+    if @shippings.empty?
     else
-      shipping_id = shipping[0]["id"]
-      @shipping_name = shipping[0]["name"]
+      shipping_id = @shippings[0]["id"]
+      @shipping_name = @shippings[0]["name"]
       cost = Cost.where(["int_min_weight < ? and int_max_weight > ? and shipping_id = ?", @order.weight, @order.weight, shipping_id])
       deliv_term = DelivTerm.where(["term_int_min_weight < ? and term_int_max_weight > ? and shipping_id = ?", @order.weight, @order.weight, shipping_id])
-      @term_deliv = deliv_term[0]["deliv_term"]
-      @cost_km = cost[0]["km_value"]
-      @cost_fee = shipping[0]["deliv_fee"]
-      @value_km = @order.km_dist * @cost_km/100 + @cost_fee
+      if cost.empty? || deliv_term.empty?
+        flash.now[:alert] = 'Sem cadastro de frete e/ou Custo'
+      else
+        @term_deliv = deliv_term[0]["deliv_term"]
+        @cost_km = cost[0]["km_value"]
+        @cost_fee = @shippings[0]["deliv_fee"]
+        @value_km = @order.km_dist * @cost_km/100 + @cost_fee
+      end
     end
   end
   def index

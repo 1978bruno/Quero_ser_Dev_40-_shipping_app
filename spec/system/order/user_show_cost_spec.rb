@@ -33,7 +33,7 @@ describe 'Usuário lista as Ordens abertas no sistema' do
     click_on ('Cotação')
 
 
-    expect(page).to have_content 'Código identificador: ABCD12345678912'
+    expect(page).to have_content 'ABCD12345678912'
     expect(page).to have_content 'CEP de coleta: 11256360'
     expect(page).to have_content 'Endereço de coleta: Rua um dois três, 205 - Laranjeiras Condongas - MS'
     expect(page).to have_content 'Dimensões do produto: 10cm X 12cm X 13cm'
@@ -44,7 +44,7 @@ describe 'Usuário lista as Ordens abertas no sistema' do
     expect(page).to have_content 'Distância em KM: 320'
     expect(page).to have_content 'Situação: pendente'
 
-    expect(page).not_to have_content 'Código identificador: ABCD12345677894'
+    expect(page).not_to have_content 'ABCD12345677894'
     expect(page).not_to have_content 'CEP de coleta: 11256361'
     expect(page).not_to have_content 'Endereço de coleta: Rua três, 1205 - Laranja Coronga - MT'
     expect(page).not_to have_content 'Dimensões do produto: 110cm X 112cm X 113'
@@ -57,8 +57,8 @@ describe 'Usuário lista as Ordens abertas no sistema' do
     expect(page).not_to have_content 'Situação: cancelada'
   end
   it 'com valores de operação frete e prazo' do
-    user = User.create!(name: 'Bruno', email:'bruno@email.com', password:'password')
-    allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
+    user = User.create!(name: 'User', email:'user@email.com', password:'pwd123456')
+    code = allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
     Order.create!(collect_zip: 11256360, collect_street: 'Rua um dois três', collect_number: 205, collect_nhood: 'Laranjeiras', collect_city: 'Condongas', 
                   collect_state: 'MS', width: 10, height: 12, depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12365480, 
                   deliv_street: 'Rua Condongueira', deliv_number: 105 , deliv_nhood: 'Canelas', deliv_city: 'Jocacia', deliv_state: 'MT', km_dist: 102, 
@@ -76,7 +76,7 @@ describe 'Usuário lista as Ordens abertas no sistema' do
     click_on 'Cotação'
     click_on 'ABCD12345678912'
 
-    expect(page).to have_content 'Código identificador: ABCD12345678912'
+    expect(page).to have_content 'ABCD12345678912'
     expect(page).to have_content 'CEP de coleta: 11256360'
     expect(page).to have_content 'Endereço de coleta: Rua um dois três, 205 - Laranjeiras Condongas - MS'
     expect(page).to have_content 'Dimensões do produto: 10cm X 12cm X 13'
@@ -87,9 +87,71 @@ describe 'Usuário lista as Ordens abertas no sistema' do
     expect(page).to have_content 'Distância em KM: 102km'
     expect(page).to have_content 'Situação: pendente'
     expect(page).to have_content 'Modalidade de transporte: GP003'
-    expect(page).to have_content 'Pedido criado por: Bruno'
+    expect(page).to have_content 'Pedido criado por: User'
     expect(page).to have_content 'Valor do km rodado: R$ 0,45'
     expect(page).to have_content 'Valor de taxa de entrega: R$ 250,00'
     expect(page).to have_content 'Valor total da operação: R$ 295,00'
+  end
+  it 'sem valor de operação - frete' do
+    user = User.create!(name: 'User', email:'user@email.com', password:'pwd123456')
+    code = allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
+    Order.create!(collect_zip: 11256360, collect_street: 'Rua um dois três', collect_number: 205, collect_nhood: 'Laranjeiras', collect_city: 'Condongas', 
+                  collect_state: 'MS', width: 10, height: 12, depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12365480, 
+                  deliv_street: 'Rua Condongueira', deliv_number: 105 , deliv_nhood: 'Canelas', deliv_city: 'Jocacia', deliv_state: 'MT', km_dist: 102, 
+                  user_id: user.id, status: 0)
+    shipping1 = Shipping.create!(name: 'GP003', min_dist: 10, max_dist: 110, min_weight: 60, max_weight: 120, deliv_fee: 250)
+    shipping = Shipping.create!(name: 'GP004', min_dist: 111, max_dist: 180, min_weight: 26, max_weight: 76, deliv_fee: 250)
+    DelivTerm.create!(term_int_min_weight: 60, term_int_max_weight: 80, deliv_term: 15, shipping: shipping1)
+    DelivTerm.create!(term_int_min_weight: 81, term_int_max_weight: 100, deliv_term: 45, shipping: shipping1)
+    DelivTerm.create!(term_int_min_weight: 101, term_int_max_weight: 120, deliv_term: 75, shipping: shipping1)
+
+    visit root_path
+    click_on 'Cotação'
+    click_on 'ABCD12345678912'
+
+    expect(page).to have_content 'ABCD12345678912'
+    expect(page).to have_content 'CEP de coleta: 11256360'
+    expect(page).to have_content 'Endereço de coleta: Rua um dois três, 205 - Laranjeiras Condongas - MS'
+    expect(page).to have_content 'Dimensões do produto: 10cm X 12cm X 13'
+    expect(page).to have_content 'Peso: 82kg'
+    expect(page).to have_content 'Nome do destinatário: Um Dois Três de Oliveira Quatro'
+    expect(page).to have_content 'CEP de entrega: 12365480'
+    expect(page).to have_content 'Endereço de entrega: Rua Condongueira, 105 - Canelas Jocacia - MT'
+    expect(page).to have_content 'Distância em KM: 102km'
+    expect(page).to have_content 'Situação: pendente'
+    expect(page).to have_content 'Modalidade de transporte: GP003'
+    expect(page).to have_content 'Pedido criado por: User'
+    expect(page).to have_content 'Sem cadastro de frete e/ou Custo'
+  end
+  it 'sem valor de operação - Custo' do
+    user = User.create!(name: 'User', email:'user@email.com', password:'pwd123456')
+    code = allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
+    Order.create!(collect_zip: 11256360, collect_street: 'Rua um dois três', collect_number: 205, collect_nhood: 'Laranjeiras', collect_city: 'Condongas', 
+                  collect_state: 'MS', width: 10, height: 12, depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12365480, 
+                  deliv_street: 'Rua Condongueira', deliv_number: 105 , deliv_nhood: 'Canelas', deliv_city: 'Jocacia', deliv_state: 'MT', km_dist: 102, 
+                  user_id: user.id, status: 0)
+    shipping1 = Shipping.create!(name: 'GP003', min_dist: 10, max_dist: 110, min_weight: 60, max_weight: 120, deliv_fee: 250)
+    shipping = Shipping.create!(name: 'GP004', min_dist: 111, max_dist: 180, min_weight: 26, max_weight: 76, deliv_fee: 250)
+    Cost.create!(int_min_weight: 60, int_max_weight: 80, km_value: 15, shipping: shipping1)
+    Cost.create!(int_min_weight: 81, int_max_weight: 100, km_value: 45, shipping: shipping1)
+    Cost.create!(int_min_weight: 101, int_max_weight: 120, km_value: 75, shipping: shipping1)
+
+    visit root_path
+    click_on 'Cotação'
+    click_on 'ABCD12345678912'
+
+    expect(page).to have_content 'ABCD12345678912'
+    expect(page).to have_content 'CEP de coleta: 11256360'
+    expect(page).to have_content 'Endereço de coleta: Rua um dois três, 205 - Laranjeiras Condongas - MS'
+    expect(page).to have_content 'Dimensões do produto: 10cm X 12cm X 13'
+    expect(page).to have_content 'Peso: 82kg'
+    expect(page).to have_content 'Nome do destinatário: Um Dois Três de Oliveira Quatro'
+    expect(page).to have_content 'CEP de entrega: 12365480'
+    expect(page).to have_content 'Endereço de entrega: Rua Condongueira, 105 - Canelas Jocacia - MT'
+    expect(page).to have_content 'Distância em KM: 102km'
+    expect(page).to have_content 'Situação: pendente'
+    expect(page).to have_content 'Modalidade de transporte: GP003'
+    expect(page).to have_content 'Pedido criado por: User'
+    expect(page).to have_content 'Sem cadastro de frete e/ou Custo'
   end
 end
