@@ -3,7 +3,6 @@ require 'rails_helper'
 describe 'Usuário se autentica' do
   it 'com sucesso' do
     User.create!(email: 'bruno@email.com', password: 'password')
-
     visit root_path
     click_on 'Entrar'
     within('form') do
@@ -11,7 +10,6 @@ describe 'Usuário se autentica' do
       fill_in 'Senha', with: 'password'
       click_on 'Entrar'
     end
-
     within('nav') do
       expect(page).not_to have_link 'Entrar'
       expect(page).to have_button 'Sair'
@@ -21,7 +19,6 @@ describe 'Usuário se autentica' do
   end
   it 'e faz logout' do
     User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
-
     visit root_path
     click_on 'Entrar'
     within('form') do
@@ -30,7 +27,6 @@ describe 'Usuário se autentica' do
       click_on 'Entrar'
     end
     click_on 'Sair'
-
     within('nav') do
       expect(page).not_to have_button 'Sair'
       expect(page).to have_link 'Entrar'

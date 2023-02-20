@@ -1,0 +1,36 @@
+<%= form_with(model: @shipping) do |f| %>
+  <div class="row">
+    <div class="col-1"><%=f.label :name, class: "form-label" %></div>
+    <div class="col-2"><%= f.text_field :name, class: 'form-control' %></div>
+  </div>
+  <div class="row">
+    <div class="col-1"><%=f.label :min_dist, class: "form-label"  %></div>
+    <div class="col-2"><%= f.number_field :min_dist, class: 'form-control' %></div>
+  </div>
+  <div class="row">
+    <div class="col-1"><%=f.label :max_dist, class: "form-label"  %></div>
+    <div class="col-2"><%= f.number_field :max_dist, class: 'form-control' %></div>
+  </div>
+  <div class="row">
+    <div class="col-1"><%=f.label :min_weight, class: "form-label"  %></div>
+    <div class="col-2"><%= f.number_field :min_weight, class: 'form-control' %></div>
+  </div>
+  <div class="row">
+    <div class="col-1"><%=f.label :max_weight, class: "form-label"  %></div>
+    <div class="col-2"><%= f.number_field :max_weight, class: 'form-control' %></div>
+  </div>
+  <div class="row">
+    <div class="col-1"><%=f.label :deliv_fee, class: "form-label"  %></div>
+    <div class="col-2"><%= f.number_field :deliv_fee, class: 'form-control' %></div>
+  </div>
+  <div class="form-check">
+    <div class="row">
+      <div class="col-1"><%= f.label :status, class: 'form-check-label' %></div>
+      <div class="col-2"><%= f.check_box :status, class: 'form-check-input' %>Ativo</div>
+    </div>
+  </div>
+
+  <div class="row" align="center">
+    <div class="col-2"><%= f.submit 'Enviar', class: "btn btn-light" %></div>
+  </div>
+<% end %>

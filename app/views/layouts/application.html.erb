@@ -36,9 +36,13 @@
                       <ul class="dropdown-menu">
                         <li><%= link_to 'Criar ordem', new_order_path, class: "dropdown-item" %></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Editar ordem', edit_order_path, class: "dropdown-item" %></li>
+                        <% if params[:id].nil? %>
+                          <li><%= link_to 'Editar ordem', orders_path, class: "nav-link disabled" %></li>
+                        <% else current_page?(order_path(params[:id])) %>
+                          <li><%= link_to 'Editar ordem', edit_order_path, class: "dropdown-item" %></li>
+                        <% end %>
                         <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Orçarmento', orders_path, class: "dropdown-item" %></li>
+                        <li><%= link_to 'Orçamento', orders_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Iniciar pedido', orders_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Finalizar pedido', orders_path, class: "dropdown-item" %></li>
                       </ul>
@@ -63,7 +67,11 @@
                         <li><%= link_to 'Cadastrar Custo', new_cost_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Cadastrar Prazo', new_deliv_term_path, class: "dropdown-item" %></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Editar Modalidade', shippings_path, class: "dropdown-item" %></li>
+                        <% if params[:id].nil? %>
+                          <li><%= link_to 'Editar Modalidade', shippings_path, class: "nav-link disabled" %></li>
+                        <% else current_page?(shipping_path(params[:id])) %>
+                          <li><%= link_to 'Editar Modalidade', edit_shipping_path, class: "dropdown-item" %></li>
+                        <% end %>
                         <li><%= link_to 'Editar Custo', shippings_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Editar Prazo', shippings_path, class: "dropdown-item" %></li>
                       </ul>

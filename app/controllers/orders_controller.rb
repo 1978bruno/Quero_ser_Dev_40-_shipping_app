@@ -62,14 +62,14 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   def update
-    order_params = params.require(:vehicle).permit(:collect_street, :collect_number, :collect_nhood, :collect_city, :collect_state, :width, :height, :depth, :weight,
-                                                  :deliv_reipient, :deliv_street, :deliv_number, :deliv_nhood, :deliv_city, :deliv_state, :km_dist, :deliv_zip, :collect_zip))
+    order_params = params.require(:order).permit(:collect_street, :collect_number, :collect_nhood, :collect_city, :collect_state, :width, 
+                                                :height, :depth, :weight, :deliv_reipient, :deliv_street, :deliv_number, :deliv_nhood, 
+                                                :deliv_city, :deliv_state, :km_dist, :deliv_zip, :collect_zip, :code)
     @order = Order.update(order_params)
     if order_params.empty?
-      redirect_to vehicles_path, notice: 'Não foi possível atualizar os dados do veículo.'
+      redirect_to order_path(@order), notice: 'Não foi possível atualizar os dados do veículo.'
     else
-      redirect_to vehicles_path, notice: 'Dados do veículo atualizados com sucesso'
+      redirect_to order_path(@order), notice: 'Dados do veículo atualizados com sucesso'
     end
-  end
   end
 end

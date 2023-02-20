@@ -22,4 +22,14 @@ class ShippingsController < ApplicationController
     @name = params['query']
     @shippings = Shipping.where('name LIKE ?', "%#{@name}%")
   end
+  def edit
+    @shipping = Shipping.find(params[:id])
+  end
+  def update
+    shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
+                                                      :min_weight, :max_weight,
+                                                      :deliv_fee, :statuses)
+    Shipping.update(shipping_params)
+    redirect_to shipping_path(shipping_params)
+  end
 end
