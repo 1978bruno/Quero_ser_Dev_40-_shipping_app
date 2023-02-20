@@ -1,22 +1,22 @@
 <%= form_with(model: Cost.new) do |f| %>
-  <div>
-    <%=f.label :shipping_id, 'Modelo' %>
-    <%= f.collection_select :shipping_id, @shipping, :id, :name %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :shipping_id, 'Modelo', class: "form-label" %></strong></div>
+    <div class="col-2"><%= f.collection_select :shipping_id, @shipping, :id, :name, {:include_blank => true}, {class: "form-control"} %></div>
   </div>
-  <div>
-    <%=f.label :int_min_weight %>
-    <%= f.number_field :int_min_weight %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :int_min_weight, class: "form-label" %></strong></div>
+    <div class="col-2"><%= f.number_field :int_min_weight, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :int_max_weight %>
-    <%= f.number_field :int_max_weight %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :int_max_weight, class: "form-label" %></strong></div>
+    <div class="col-2"><%= f.number_field :int_max_weight, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :km_value %>
-    <%= f.number_field :km_value %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :km_value, class: "form-label" %></strong></div>
+    <div class="col-2"><%= f.number_field :km_value, class: 'form-control' %></div>
   </div>
 
-  <div>
-    <%= f.submit 'Cadastrar'  %>
+  <div class="row">
+    <div class="col-2" align="center"><%= f.submit 'Cadastrar', class: "btn btn-light" %></div>
   </div>
 <% end %>

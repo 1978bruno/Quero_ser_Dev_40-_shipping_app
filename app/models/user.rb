@@ -5,5 +5,4 @@ class User < ApplicationRecord
   has_many :costs
   has_many :deliv_terms
   has_many :orders
-
 end

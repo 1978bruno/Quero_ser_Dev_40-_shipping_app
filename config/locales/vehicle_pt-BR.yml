@@ -4,6 +4,12 @@ pt-BR:
       vehicle:  
         one: 'Veículo'
         other: 'Veículos'
+      vehicle_type:
+        one: 'Modelo'
+        other: 'Modelos'
+      vehicle_category:
+        one: 'Categoria'
+        other: 'Categorias'
     attributes:
       vehicle:
         license_plate: 'Placa do Veículo'
@@ -14,4 +20,9 @@ pt-BR:
         status: 'Situação'
         manufacturer_vehicle: 'Marca'
         model_vehicle: 'Modelo'
+        category: 'Categoria'
+      vehicle_type:
+        manufacturer_vehicle: 'Fabricante'
+        model_vehicle: 'Modelo'
+      vehicle_category:
         category: 'Categoria'

@@ -1,6 +1,13 @@
 <h1>Resultado da Busca por: <%= @name %> </h1>
-
-<p><%= @shippings.count %> <%= Shipping.model_name.human(count: @shippings.count)%> <%= I18n.translate(:found, count: @shippings.count)%></p>
-<% @shippings.each do |shipping| %>
-  <%= render shipping %>
-<% end %>
+<div class="row">
+  <p><%= @shippings.count %> <%= Shipping.model_name.human(count: @shippings.count)%> <%= I18n.translate(:found, count: @shippings.count)%></p>
+  <% @shippings.each do |shipping| %>
+    <div class="col-2">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <%= render shipping %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

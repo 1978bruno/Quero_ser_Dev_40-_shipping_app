@@ -1,12 +1,10 @@
-  <dl>
-     <br>
-    <dt><%= Shipping.human_attribute_name(:name) %>:</dt>
-    <dd><%= link_to shipping.name, shipping %></dd>
-    <dt><%= Shipping.human_attribute_name(:min_dist) %>:</dt>
-    <dd><%= shipping.min_dist %>km</dd>
-    <dt><%= Shipping.human_attribute_name(:max_dist) %>:</dt>
-    <dd><%= shipping.max_dist %>km</dd>
-    <dt><%= Shipping.human_attribute_name(:status) %>:</dt>
-    <dd><%= I18n.t(shipping.status) %></dd><br>
-  <p>-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x</p>
-  </dl>
+<h5 class="card-title" align="center"><strong><%= Shipping.human_attribute_name(:name) %> </strong></h5>
+<h6 class="card-subtitle mb-2 text-muted" align="center"><%= link_to shipping.name, shipping %></h6>
+<p class="card-text">
+  <strong><%= Shipping.human_attribute_name(:min_dist) %>:</strong>
+  <%= shipping.min_dist %>km<br>
+  <strong><%= Shipping.human_attribute_name(:max_dist) %>:</strong>
+  <%= shipping.max_dist %>km<br>
+  <strong><%= Shipping.human_attribute_name(:status) %>:</strong>
+  <%= I18n.t(shipping.status) %>
+</p>

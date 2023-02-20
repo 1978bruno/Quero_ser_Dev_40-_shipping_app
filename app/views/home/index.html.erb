@@ -1,14 +1,12 @@
-<h2>Lista de modalidades</h2>
-<div>
-  <%= link_to('Cadastrar modalidade', new_shipping_path) %>
-</div>
-<div>
+<h1>Lista de modalidades</h1>
+<br>
+<div class="row">
   <%= form_with url: search_shippings_path, method: :get do |form| %>
-    <%= form.label :query, "Buscar Modalidade" %>
-    <%= form.text_field :query %>
-    <%= form.submit "Buscar" %>
-  <% end %><br><br>
-</div>
+    <div class="col-1"><strong><%= form.label :query, "Buscar Modalidade", class: "form-label" %></strong></div>
+    <div class="col-1"><%= form.text_field :query, class: 'form-control' %></div>
+    <div class="col-1"><%= form.submit "Buscar", class: "btn btn-light" %></div>
+  <% end %>
+</div><br><br>
 <div class="row">
   <% @shippings.each do |s| %>
     <div class="col-2">

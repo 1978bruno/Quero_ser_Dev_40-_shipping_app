@@ -2,9 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário cadastra nova modalidade de transporte' do
   it 'iniciando pela tela inicial' do
-
     visit root_path
-    click_on ('Cadastrar modalidade')
+    click_on('Cadastrar modalidade')
 
     expect(page).to have_field('Nome')
     expect(page).to have_field('Distância mínima')
@@ -14,8 +13,6 @@ describe 'Usuário cadastra nova modalidade de transporte' do
     expect(page).to have_field('Tarifa de entrega')
   end
   it 'com sucesso' do
-
-
     visit root_path
     click_on 'Cadastrar modalidade'
     fill_in 'Nome',             with: 'MOC'
@@ -30,10 +27,8 @@ describe 'Usuário cadastra nova modalidade de transporte' do
     expect(page).to have_content 'MOC'
     expect(page).to have_content '100'
     expect(page).to have_content '800'
-
   end
   it 'e habilitar o botao de status' do
-
     visit root_path
     click_on 'Cadastrar modalidade'
     fill_in 'Nome',             with: 'MOC'
@@ -42,8 +37,7 @@ describe 'Usuário cadastra nova modalidade de transporte' do
     fill_in 'Peso mínimo',      with: '300'
     fill_in 'Peso máximo',      with: '1500'
     fill_in 'Tarifa de entrega', with: '2500'
-    page.check('Situação')         
+    page.check('Situação')
     click_on 'Enviar'
-
   end
 end

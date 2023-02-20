@@ -1,13 +1,13 @@
 <h1>Transportadora - Veículos</h1>
-
+<br>
 <% if @vehicles.empty? %>
   <p> Nenhum veículo cadastrado</p>
 <% else %>
-  <% @vehicles.each do |vehicle| %>
-    <%= render vehicle %>
-  <% end %>
+    <div class="row">
+    <% @vehicles.each do |vehicle| %>
+      <div class="col-3">
+        <%= render vehicle %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-  
-<div>
-  <%= link_to('Voltar', root_path) %>
-</div>

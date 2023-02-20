@@ -1,0 +1,5 @@
+AllCops:
+  SuggestExtensions: false
+Naming/FileName:
+ Exclude:
+   - lib/rubocop-foobar.rb

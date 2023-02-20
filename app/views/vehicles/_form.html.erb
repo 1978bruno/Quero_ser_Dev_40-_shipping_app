@@ -1,31 +1,31 @@
-<%= form_with(model: Vehicle.new) do |f| %>
-  <div>
-    <%=f.label :license_plate %>
-    <%= f.text_field :license_plate %>
+<%= form_with(model: @vehicle) do |f| %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :license_plate, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.text_field :license_plate, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :vehicle_types_id, 'Modelo' %>
-    <%= f.collection_select :vehicle_types_id, @vehicle_types, :id, :model_vehicle %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :vehicle_types_id, "Modelo", class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.collection_select :vehicle_types_id, @vehicle_types, :id, :model_vehicle, {:include_blank => true}, {class: "form-control"} %></div>
   </div>
-  <div>
-    <%=f.label :vehicle_categories_id %>
-    <%= f.collection_select :vehicle_categories_id, @vehicle_categories, :id, :category %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :vehicle_categories_id, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.collection_select :vehicle_categories_id, @vehicle_categories, :id, :category, {:include_blank => true}, {class: "form-control"} %></div>
   </div>
-  <div>
-    <%=f.label :manufature_year %>
-    <%= f.number_field :manufature_year %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :manufature_year, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.number_field :manufature_year, class: 'form-control' %></div>
   </div>
-  <div>
-    <%=f.label :maximum_load_capacity %>
-    <%= f.number_field :maximum_load_capacity %>
+  <div class="row">
+    <div class="col-1"><strong><%=f.label :maximum_load_capacity, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.number_field :maximum_load_capacity, class: 'form-control' %></div>
   </div>
-  <div>
-    <%= f.label :status, 'Status' %>
-    <%= f.check_box :status %>
-
+  <div class="form-check">
+    <div class="row">
+      <div class="col-1"><strong><%= f.label :status, class: 'form-check-label' %></strong></div>
+      <div class="col-2"><%= f.check_box :status, class: 'form-check-input' %>Ativo</div>
+    </div>
   </div>
-
-  <div>
-    <%= f.submit 'Gravar'  %>
+  <div class="row">
+    <div class="col-2" align="center"><%= f.submit 'Gravar', class: "btn btn-light" %></div>
   </div>
 <% end %>

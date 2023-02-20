@@ -36,7 +36,7 @@
                       <ul class="dropdown-menu">
                         <li><%= link_to 'Criar ordem', new_order_path, class: "dropdown-item" %></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Editar ordem', orders_path, class: "dropdown-item" %></li>
+                        <li><%= link_to 'Editar ordem', edit_order_path, class: "dropdown-item" %></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><%= link_to 'Orçarmento', orders_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Iniciar pedido', orders_path, class: "dropdown-item" %></li>
@@ -51,12 +51,15 @@
                         <li><%= link_to 'Editar cadastro Veículo', vehicles_path, class: "dropdown-item" %></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><%= link_to 'lista de veículos', vehicles_path, class: "dropdown-item" %></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><%= link_to 'Cadastrar modelo de veículo', new_vehicle_type_path, class: "dropdown-item" %></li>
+                        <li><%= link_to 'Cadastrar categoria de veículo', new_vehicle_category_path, class: "dropdown-item" %></li>
                       </ul>
                     </li>
                     <li class="nav-item dropdown">
                       <%= link_to 'Modalidades', shippings_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
                       <ul class="dropdown-menu">
-                        <li><%= link_to 'Cadastrar Modalidade', new_shipping_path, class: "dropdown-item" %></li>
+                        <li><%= link_to 'Cadastrar modalidade', new_shipping_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Cadastrar Custo', new_cost_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Cadastrar Prazo', new_deliv_term_path, class: "dropdown-item" %></li>
                         <li><hr class="dropdown-divider"></li>
@@ -64,6 +67,9 @@
                         <li><%= link_to 'Editar Custo', shippings_path, class: "dropdown-item" %></li>
                         <li><%= link_to 'Editar Prazo', shippings_path, class: "dropdown-item" %></li>
                       </ul>
+                    </li>
+                    <li>
+                      <a class="nav-link disabled">Pedido</a>
                     </li>
                     <li class="nav-item">
                       <% if user_signed_in? %>
@@ -73,9 +79,7 @@
                         <%= link_to 'Entrar', new_user_session_path, class: 'nav-link active' %>
                       <% end %>
                     </li>
-                    <li>
-                      <a class="nav-link disabled">Pedido</a>
-                    </li>
+
                   </ul>
                 </div>
               </div>

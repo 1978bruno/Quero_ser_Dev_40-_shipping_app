@@ -1,0 +1,13 @@
+<%= form_with(model: VehicleType.new) do |f| %>
+  <div class='row'>
+    <div class="col-1"><strong><%=f.label :manufacturer_vehicle, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.text_field :manufacturer_vehicle, class: 'form-control' %></div>
+  </div>
+  <div class='row'>
+    <div class="col-1"><strong><%=f.label :model_vehicle, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.text_field :model_vehicle, class: 'form-control' %></div>
+  </div>
+  <div>
+    <div class="col-2" align="center"><strong><%= f.submit 'Gravar', class: "btn btn-light" %></strong></div>
+  </div>
+<% end %>

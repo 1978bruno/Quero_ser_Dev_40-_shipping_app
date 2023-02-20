@@ -1,17 +1,20 @@
-<div>
-  <strong><%= Vehicle.human_attribute_name(:license_plate) %>: </strong>
-  <%= vehicle.license_plate %><br>
-  <strong><%= Vehicle.human_attribute_name(:manufacturer_vehicle) %>: </strong>
-  <%= @vehicle_types.find(vehicle.vehicle_types_id).manufacturer_vehicle %><br>
-  <strong><%= Vehicle.human_attribute_name(:model_vehicle) %>: </strong>
-  <%= @vehicle_types.find(vehicle.vehicle_types_id).model_vehicle %><br>
-  <strong><%= Vehicle.human_attribute_name(:vehicle_categories_id) %>: </strong>
-  <%= @vehicle_categories.find(vehicle.vehicle_categories_id).category %><br>
-  <strong><%= Vehicle.human_attribute_name(:manufature_year) %>: </strong>
-  <%= vehicle.manufature_year %><br>
-  <strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %>: </strong>
-  <%= vehicle.maximum_load_capacity %>kg<br>
-  <strong><%= Vehicle.human_attribute_name(:status) %>: </strong>
-  <%= I18n.t(vehicle.status) %><br>
-  <p>-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x</p><br>
+<div class="card" style="width: 20rem;">
+  <div class="card-body">
+    <h5 class="card-title" align="center"><strong><%= Vehicle.human_attribute_name(:license_plate) %></strong></h5>
+    <h6 class="card-subtitle mb-2 text-muted" align="center"><%= link_to vehicle.license_plate, edit_vehicle_path(vehicle.id) %></h6>
+    <p class="card-text">
+      <strong><%= Vehicle.human_attribute_name(:manufacturer_vehicle) %>: </strong>
+      <%= @vehicle_types.find(vehicle.vehicle_types_id).manufacturer_vehicle %><br>
+      <strong><%= Vehicle.human_attribute_name(:model_vehicle) %>: </strong>
+      <%= @vehicle_types.find(vehicle.vehicle_types_id).model_vehicle %><br>
+      <strong><%= Vehicle.human_attribute_name(:vehicle_categories_id) %>: </strong>
+      <%= @vehicle_categories.find(vehicle.vehicle_categories_id).category %><br>
+      <strong><%= Vehicle.human_attribute_name(:manufature_year) %>: </strong>
+      <%= vehicle.manufature_year %><br>
+      <strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %>: </strong>
+      <%= vehicle.maximum_load_capacity %>kg<br>
+      <strong><%= Vehicle.human_attribute_name(:status) %>: </strong>
+      <%= I18n.t(vehicle.status) %><br>
+    </p>
+  </div>
 </div>

@@ -1,0 +1,12 @@
+<h1>Cadastro de nova categoria de Veículos</h1>
+<br>
+<% if (@vehicle_category.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @vehicle_category.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

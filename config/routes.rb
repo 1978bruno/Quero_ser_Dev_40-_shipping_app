@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
-  resources :shippings, only: [:show, :new, :create] do
+  resources :shippings, only: %i[show new create] do
     get 'search', on: :collection
     post 'select_modal', on: :member
   end
-  resources :vehicles, only: [:index, :create, :new]
-  resources :costs, only: [:create, :new]
-  resources :deliv_terms, only: [:create, :new]
-  resources :orders, only: [:index, :create, :new, :show] do
+  resources :vehicles, only: %i[index create new edit update]
+  resources :vehicle_types, only: %i[new create]
+  resources :vehicle_categories, only: %i[new create]
+  resources :costs, only: %i[create new]
+  resources :deliv_terms, only: %i[create new]
+  resources :orders, only: %i[index create new show edit update] do
     get 'search', on: :collection
     post 'select_modal', on: :member
   end

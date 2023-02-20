@@ -2,8 +2,9 @@ class CostsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   def new
     @shipping = Shipping.all
-    @cost = Cost.new()
+    @cost = Cost.new
   end
+
   def create
     cost_params = params.require(:cost).permit(:int_min_weight, :int_max_weight, :km_value, :shipping_id)
     @cost = Cost.new(cost_params)
@@ -15,7 +16,7 @@ class CostsController < ApplicationController
     else
       @shipping = Shipping.all
       flash.now[:alert] = 'Cadastro não realizado'
-      flash.now[:notice] ='Não podem existir campos em branco'
+      flash.now[:notice] = 'Não podem existir campos em branco'
       render :new
     end
   end

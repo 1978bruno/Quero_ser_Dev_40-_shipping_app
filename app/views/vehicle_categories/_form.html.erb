@@ -1,0 +1,9 @@
+<%= form_with(model: VehicleCategory.new) do |f| %>
+  <div class='row'>
+    <div class="col-1"><strong><%=f.label :category, class: 'form-label'  %></strong></div>
+    <div class="col-2"><%= f.text_field :category, class: 'form-control' %></div>
+  </div>
+  <div class='row'>
+    <div class="col-2" align="center"><strong><%= f.submit 'Gravar', class: "btn btn-light" %></strong></div>
+  </div>
+<% end %>

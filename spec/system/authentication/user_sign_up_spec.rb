@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe 'Usuário se autentica' do
   it 'com sucesso' do
-    
-
     visit root_path
     click_on 'Entrar'
     click_on 'Criar uma conta'
