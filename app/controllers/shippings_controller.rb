@@ -1,14 +1,12 @@
 class ShippingsController < ApplicationController
   def show
     @shipping = Shipping.find(params[:id])
-    @cost = Cost.find_by(shipping: params[:id])
-    @deliv_term = DelivTerm.find_by(shipping: params[:id])
+    @cost = Cost.where(shipping: params[:id])
+    @deliv_term = DelivTerm.where(shipping: params[:id])
   end
-
   def new
     @shipping = Shipping.new
   end
-
   def create
     shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
                                                        :min_weight, :max_weight,
@@ -17,7 +15,6 @@ class ShippingsController < ApplicationController
     s.save
     redirect_to root_path
   end
-
   def search
     @name = params['query']
     @shippings = Shipping.where('name LIKE ?', "%#{@name}%")
@@ -28,8 +25,16 @@ class ShippingsController < ApplicationController
   def update
     shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
                                                       :min_weight, :max_weight,
-                                                      :deliv_fee, :statuses)
-    Shipping.update(shipping_params)
+                                                      :deliv_fee, :status)
+    Shipping.update(params[:id], shipping_params)
     redirect_to shipping_path(shipping_params)
+  end
+  def active
+    Shipping.update(params[:id], status: 3)
+    redirect_to root_path
+  end
+  def disable
+    Shipping.update(params[:id], status: 0)
+    redirect_to root_path
   end
 end

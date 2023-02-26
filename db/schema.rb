@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_184642) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_25_144023) do
   create_table "costs", force: :cascade do |t|
     t.integer "int_min_weight"
     t.integer "int_max_weight"
-    t.integer "km_value"
+    t.float "km_value"
+    t.integer "shipping_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "shipping_id", null: false
     t.index ["shipping_id"], name: "index_costs_on_shipping_id"
   end
 
@@ -49,13 +49,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_184642) do
     t.string "deliv_city"
     t.string "deliv_state"
     t.integer "km_dist"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "deliv_zip"
     t.integer "collect_zip"
-    t.integer "user_id", null: false
     t.integer "status", default: 0
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "process_orders", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "shipping_id", null: false
+    t.integer "vehicle_id", null: false
+    t.float "total_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_process_orders_on_order_id"
+    t.index ["shipping_id"], name: "index_process_orders_on_shipping_id"
+    t.index ["vehicle_id"], name: "index_process_orders_on_vehicle_id"
   end
 
   create_table "shippings", force: :cascade do |t|
@@ -98,20 +110,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_184642) do
 
   create_table "vehicles", force: :cascade do |t|
     t.string "license_plate"
-    t.integer "vehicle_types_id", null: false
-    t.integer "vehicle_categories_id", null: false
+    t.integer "vehicle_type_id", null: false
+    t.integer "vehicle_category_id", null: false
     t.integer "manufature_year"
     t.integer "maximum_load_capacity"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["vehicle_categories_id"], name: "index_vehicles_on_vehicle_categories_id"
-    t.index ["vehicle_types_id"], name: "index_vehicles_on_vehicle_types_id"
+    t.index ["vehicle_category_id"], name: "index_vehicles_on_vehicle_category_id"
+    t.index ["vehicle_type_id"], name: "index_vehicles_on_vehicle_type_id"
   end
 
   add_foreign_key "costs", "shippings"
   add_foreign_key "deliv_terms", "shippings"
   add_foreign_key "orders", "users"
-  add_foreign_key "vehicles", "vehicle_categories", column: "vehicle_categories_id"
-  add_foreign_key "vehicles", "vehicle_types", column: "vehicle_types_id"
+  add_foreign_key "process_orders", "orders"
+  add_foreign_key "process_orders", "shippings"
+  add_foreign_key "process_orders", "vehicles"
+  add_foreign_key "vehicles", "vehicle_categories"
+  add_foreign_key "vehicles", "vehicle_types"
 end

@@ -1,66 +1,56 @@
-<h1>Fretes</h1>
+<h1 align="center"> Detalhes do pedido </h1>
 <br>
-  <div class="row">
-    <div class="col-2">
-        <strong><%= Order.human_attribute_name(:code) %>: </strong>
-        <%= @order.code %><br>
-        <strong>Pedido criado por: </strong>
-        <%= @user.name %><br>
-      </div>
+<div class="row">
+  <div class="col">
+    <strong><%= Order.human_attribute_name(:code) %>: </strong>
+    <%= @order.code %><br>
+    <strong>Pedido criado por: </strong>
+    <%= @user.name %><br>
   </div>
+</div>
 <br>
-  <div class="row">
-    <div class="col-2">
-      <h5>Coleta:</H5><br>
-      <strong><%= Order.human_attribute_name(:collect_zip) %>: </strong>
-      <%= @order.collect_zip %><br>
-      <strong><%= Order.human_attribute_name(:collect_street) %>: </strong><br>
-      <%= @order.collect_street %>, <%= @order.collect_number %> - <%= @order.collect_nhood %><br>
-      <%= @order.collect_city %> - <%= @order.collect_state %>
-    </div>
-    <div class="col-2">
-      <h5>Destino:</h5><br>
-      <strong><%= Order.human_attribute_name(:deliv_reipient) %>: </strong>
-      <%= @order.deliv_reipient %><br>
-      <strong><%= Order.human_attribute_name(:deliv_zip) %>: </strong>
-      <%= @order.deliv_zip %><br>
-      <strong><%= Order.human_attribute_name(:deliv_street) %>: </strong><br>
-      <%= @order.deliv_street %>, <%= @order.deliv_number %> - <%= @order.deliv_nhood %><br>
-      <%= @order.deliv_city %> -  <%= @order.deliv_state %>
-    </div>
+<div class="row">
+  <div class="col">
+    <h5>Coleta:</H5><br>
+    <strong><%= Order.human_attribute_name(:collect_zip) %>: </strong>
+    <%= @order.collect_zip %><br>
+    <strong><%= Order.human_attribute_name(:collect_street) %>: </strong><br>
+    <%= @order.collect_street %>, <%= @order.collect_number %> - <%= @order.collect_nhood %><br>
+    <%= @order.collect_city %> - <%= @order.collect_state %>
   </div>
-<br>
-  <div class="row">
-    <div class="col=4">
-      <strong>Dimensões do produto: </strong>
-      <%= @order.width %>cm X <%= @order.height %>cm X <%= @order.depth %>cm<br>
-      <strong><%= Order.human_attribute_name(:weight) %>: </strong>
-      <%= @order.weight %>kg<br>
-      <strong><%= Order.human_attribute_name(:km_dist) %>: </strong>
-      <%= @order.km_dist %>km<br>
-      <strong><%= Order.human_attribute_name(:status) %>: </strong>
-      <%= I18n.t(@order.status) %>
-    </div>
+  <div class="col">
+    <h5>Destino:</h5><br>
+    <strong><%= Order.human_attribute_name(:deliv_reipient) %>: </strong>
+    <%= @order.deliv_reipient %><br>
+    <strong><%= Order.human_attribute_name(:deliv_zip) %>: </strong>
+    <%= @order.deliv_zip %><br>
+    <strong><%= Order.human_attribute_name(:deliv_street) %>: </strong><br>
+    <%= @order.deliv_street %>, <%= @order.deliv_number %> - <%= @order.deliv_nhood %><br>
+    <%= @order.deliv_city %> -  <%= @order.deliv_state %>
   </div>
+</div>
 <br>
-  <div>
-    <h5> Valor e prazo de entrega</h5><br>
-    <%= @shippings.each do |shipping| %>
-      <div class="row">
-        <div class="col-4"><strong>Modalidade de transporte:   </strong><%= @shipping_name %><br></div>
-      <div class="row">
-        <div class="col-2">
-          <strong>Tempo total da operação:    </strong><%= @value_deliv %><br>
-          <strong>Valor total da operação:    </strong>R$ <%= @value_km %>,00 (Valor do km rodado: R$ 0,<%= @cost_km %>)<br>
-        </div>
-        <div class="col-2">
-          <strong>Valor de taxa de entrega:   </strong>R$ <%= @cost_fee %>,00<br>
-          <strong>Tempo total da operação:    </strong><%= @term_deliv %><br><br>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-1"><Strong> Selecionar Modalidade:     </strong></div>
-        <div class="col-2"><%= button_to @shipping_name, select_modal_order_path(shipping.id), class: 'btn btn-light' %></div>
-      </div>
+<div class="row">
+  <div class="col">
+    <strong>Dimensões do produto: </strong>
+    <%= @order.width %>cm X <%= @order.height %>cm X <%= @order.depth %>cm<br>
+    <strong><%= Order.human_attribute_name(:weight) %>: </strong>
+    <%= @order.weight %>kg<br>
+    <strong><%= Order.human_attribute_name(:km_dist) %>: </strong>
+    <%= @order.km_dist %>km<br>
+    <strong><%= Order.human_attribute_name(:status) %>: </strong>
+    <%= I18n.t(@order.status) %>
+  </div>
+  <div class="col">
+    <% if @order.status == "delivered" || @order.status == "canceled" %>
+
+    <% elsif @order.status == "delivering" %>
+      <%= link_to "Entregue", process_order_path, class: 'btn btn-light'%>
+
+    <% else %>
+      <%= link_to 'Editar', edit_order_path(@order.id), class: 'btn btn-light' %>
+      <%= link_to "Cancelar", process_order_path, class: 'btn btn-light'%><br>
+      <%= link_to 'Iniciar o pedido', edit_process_order_path(@order.id), class: 'btn btn-light' %>
     <% end %>
   </div>
+</div>

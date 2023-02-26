@@ -1,11 +1,11 @@
-<h1>Transportadora - Veículos</h1>
+<h1 align="center">Lista de veículos da transportadora</h1>
 <br>
 <% if @vehicles.empty? %>
   <p> Nenhum veículo cadastrado</p>
 <% else %>
     <div class="row">
     <% @vehicles.each do |vehicle| %>
-      <div class="col-3">
+      <div class="col">
         <%= render vehicle %>
       </div>
     <% end %>

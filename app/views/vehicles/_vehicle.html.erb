@@ -4,17 +4,29 @@
     <h6 class="card-subtitle mb-2 text-muted" align="center"><%= link_to vehicle.license_plate, edit_vehicle_path(vehicle.id) %></h6>
     <p class="card-text">
       <strong><%= Vehicle.human_attribute_name(:manufacturer_vehicle) %>: </strong>
-      <%= @vehicle_types.find(vehicle.vehicle_types_id).manufacturer_vehicle %><br>
+      <%= @vehicle_types.find(vehicle.vehicle_type_id).manufacturer_vehicle %><br>
       <strong><%= Vehicle.human_attribute_name(:model_vehicle) %>: </strong>
-      <%= @vehicle_types.find(vehicle.vehicle_types_id).model_vehicle %><br>
-      <strong><%= Vehicle.human_attribute_name(:vehicle_categories_id) %>: </strong>
-      <%= @vehicle_categories.find(vehicle.vehicle_categories_id).category %><br>
+      <%= @vehicle_types.find(vehicle.vehicle_type_id).model_vehicle %><br>
+      <strong><%= Vehicle.human_attribute_name(:vehicle_category_id) %>: </strong>
+      <%= @vehicle_categories.find(vehicle.vehicle_category_id).category %><br>
       <strong><%= Vehicle.human_attribute_name(:manufature_year) %>: </strong>
       <%= vehicle.manufature_year %><br>
       <strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %>: </strong>
       <%= vehicle.maximum_load_capacity %>kg<br>
       <strong><%= Vehicle.human_attribute_name(:status) %>: </strong>
       <%= I18n.t(vehicle.status) %><br>
+      <div class="row">
+        <div class="col" align="center">
+           <%= link_to 'Editar', edit_vehicle_path(vehicle.id), class: "btn btn-light"  %>
+        </div>
+        <div class="col" align="center">
+          <% if vehicle.status == 'disabled' %>
+            <%= button_to 'Ativar', active_vehicle_path(vehicle.id), class: "btn btn-light"  %>
+          <% else %>
+            <%= button_to 'Desativar', disable_vehicle_path(vehicle.id), class: "btn btn-light"  %>
+          <% end %>
+        </div>
+       </div> 
     </p>
   </div>
 </div>

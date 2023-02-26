@@ -1,38 +1,39 @@
-<h2>Detalhes da modalidade</h2>
-
-  <div>
-    <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br>
+<h2 align="center">Detalhes da modalidade</h2>
+<br>
+<div>
+  <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br><br>
+</div>
+<div class="row">
+  <div class="col-3">
+    <strong>Distância mínima:     </strong><%= @shipping.min_dist %>km<br>
+    <strong>Distância máxima:     </strong><%= @shipping.max_dist %>km<br>
+    <strong>Peso mínimo da carga: </strong><%= @shipping.min_weight %>kg<br>
+    <strong>Peso máximo da carga: </strong><%= @shipping.max_weight %>kg<br>
+    <strong>Tarifa padrão:     R$ </strong><%= @shipping.deliv_fee %><br>
+    <strong>Situação:             </strong><%= I18n.t(@shipping.status) %><br>
   </div>
-  <table>
-    <td align="top">
-      <table>
-        <tr><td><strong>Distância mínima:     </strong></td><td><%= @shipping.min_dist %>km</td></tr>
-        <tr><td><strong>Distância máxima:     </strong></td><td><%= @shipping.max_dist %>km</td></tr>
-        <tr><td><strong>Peso mínimo da carga: </strong></td><td><%= @shipping.min_weight %>kg</td></tr>
-        <tr><td><strong>Peso máximo da carga: </strong></td><td><%= @shipping.max_weight %>kg</td></tr>
-        <tr><td><strong>Tarifa padrão:     R$ </strong></td><td><%= @shipping.deliv_fee %></td></tr>
-        <tr><td><strong>Situação:               </strong></td><td><%= I18n.t(@shipping.status) %></td></tr>
-      </table>
-    </td>
-    <td width="40"></td>
-    <td>
-      <table>
-        <% if @cost.nil? || @deliv_term.nil? %>
-          <p>Não existe modalidades de transportes cadastrados</p>
-        <% else %>
-          <tr><td><h3> Custos </h3></td></tr>
-          <tr><td><strong>Menor peso do intervalo:    </strong></td><td><%= @cost[:int_min_weight] %>kg</td></tr>
-          <tr><td><strong>Maior peso do intervalo:    </strong></td><td><%= @cost[:int_max_weight] %>kg</td></tr>
-          <tr><td><strong>Valor do KM:                </strong></td><td>R$ <%= @cost[:km_value] %><tr><td>
-          <tr><td><h3> Prazos </h3></td></tr>
-          <tr><td><strong>Menor peso do intervalo:    </strong></td><td><%= @deliv_term[:term_int_min_weight] %>kg</td></tr>
-          <tr><td><strong>Maior peso do intervalo:    </strong></td><td><%= @deliv_term[:term_int_max_weight] %>kg</td></tr>
-          <tr><td><strong>Prazo de entrega:           </strong></td><td><%= @deliv_term[:deliv_term] %> dias<br>
+  
+    <% if @cost.nil? || @deliv_term.nil? %>
+      <div class="col">
+        <p>Não existe modalidades de transportes cadastrados</p>
+      </div>
+    <% else %>
+      <div class="col">
+        <h5> Custos </h5>
+        <% @cost.each do |cost| %>
+          <strong>Menor peso do intervalo:    </strong><%= cost.int_min_weight %>kg<br>
+          <strong>Maior peso do intervalo:    </strong><%= cost.int_max_weight %>kg<br>
+          <strong>Valor do KM:                </strong>R$ <%= number_to_currency(cost.km_value) %><br><br>
         <% end %>
-      </table>
-    </td>
-
-  </table>
-  <div>
-    <%= link_to('Voltar', root_path) %>
-  </div>
+      </div>
+      <div class="col">
+        <h5> Prazos </h5>
+        <% @deliv_term.each do |deliv_term| %>
+          <strong>Menor peso do intervalo:    </strong><%= deliv_term.term_int_min_weight %>kg<br>
+          <strong>Maior peso do intervalo:    </strong><%= deliv_term.term_int_max_weight %>kg<br>
+          <strong>Prazo de entrega:           </strong><%= deliv_term.deliv_term %> dias<br><br>
+        <% end %>
+      </div>
+    <% end %>
+  <%= link_to('Voltar', root_path) %>
+</div>

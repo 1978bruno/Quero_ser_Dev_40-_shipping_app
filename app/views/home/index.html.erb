@@ -1,23 +1,35 @@
-<h1>Lista de modalidades</h1>
+<h1 align="center">Lista de modalidades</h1>
 <br>
-<div class="row">
-  <%= form_with url: search_shippings_path, method: :get do |form| %>
+<%= form_with url: search_shippings_path, method: :get do |form| %>
+  <div class="row">
     <div class="col-1"><strong><%= form.label :query, "Buscar Modalidade", class: "form-label" %></strong></div>
-    <div class="col-1"><%= form.text_field :query, class: 'form-control' %></div>
+    <div class="col-3"><%= form.text_field :query, class: 'form-control' %></div>
     <div class="col-1"><%= form.submit "Buscar", class: "btn btn-light" %></div>
-  <% end %>
-</div><br><br>
+  </div>
+<% end %>
+<br><br>
 <div class="row">
   <% @shippings.each do |s| %>
-    <div class="col-2">
-      <div class="card" style="width: 18rem;">
+    <div class="col">
+      <div class="card" style="width: 14rem;">
         <div class="card-body">
-          <h5 class="card-title" align="center"><strong><%= Shipping.human_attribute_name(:name)  %> </strong></h5>
           <h6 class="card-subtitle mb-2 text-muted" align="center"><%= link_to s.name,  shipping_path(s.id) %></h6>
           <p class="card-text">
           <strong><%= Shipping.human_attribute_name(:min_dist) %>:   </strong><%= s.min_dist %>km<br>
           <strong><%= Shipping.human_attribute_name(:max_dist) %>:   </strong><%= s.max_dist %>km<br>
           <strong><%= Shipping.human_attribute_name(:status) %>:     </strong><%= I18n.t(s.status) %><br>
+          <div class="row">
+            <div class="col" align="center">
+              <%= link_to 'Editar', edit_shipping_path(s.id), class: "btn btn-light"  %>
+            </div>
+            <div class="col" align="center">
+              <% if s.status == 'disabled' %>
+                <%= button_to 'Ativar', active_shipping_path(s.id), class: "btn btn-light"  %>
+              <% else %>
+                <%= button_to 'Desativar', disable_shipping_path(s.id), class: "btn btn-light"  %>
+              <% end %>
+            </div>
+          </div> 
         </div>
       </div>
     </div>

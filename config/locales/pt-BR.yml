@@ -8,3 +8,4 @@ pt-BR:
   pending: 'pendente'
   delivered: 'entregue'
   canceled: 'cancelada'
+  delivering: 'em entrega'

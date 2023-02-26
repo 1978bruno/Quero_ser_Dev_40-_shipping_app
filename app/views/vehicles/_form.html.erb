@@ -4,12 +4,12 @@
     <div class="col-2"><%= f.text_field :license_plate, class: 'form-control' %></div>
   </div>
   <div class="row">
-    <div class="col-1"><strong><%=f.label :vehicle_types_id, "Modelo", class: "form-label"  %></strong></div>
-    <div class="col-2"><%= f.collection_select :vehicle_types_id, @vehicle_types, :id, :model_vehicle, {:include_blank => true}, {class: "form-control"} %></div>
+    <div class="col-1"><strong><%=f.label :vehicle_type_id, "Modelo", class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.collection_select :vehicle_type_id, @vehicle_types, :id, :model_vehicle, {:include_blank => true}, {class: "form-control"} %></div>
   </div>
   <div class="row">
-    <div class="col-1"><strong><%=f.label :vehicle_categories_id, class: "form-label"  %></strong></div>
-    <div class="col-2"><%= f.collection_select :vehicle_categories_id, @vehicle_categories, :id, :category, {:include_blank => true}, {class: "form-control"} %></div>
+    <div class="col-1"><strong><%=f.label :vehicle_category_id, class: "form-label"  %></strong></div>
+    <div class="col-2"><%= f.collection_select :vehicle_category_id, @vehicle_categories, :id, :category, {:include_blank => true}, {class: "form-control"} %></div>
   </div>
   <div class="row">
     <div class="col-1"><strong><%=f.label :manufature_year, class: "form-label"  %></strong></div>

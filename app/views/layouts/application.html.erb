@@ -11,99 +11,110 @@
 
   <body>
     <header>
-      <table>
-        <tr>
-          <td align="center">
-            <%= link_to root_path do%>
-              <%= image_tag('logo.png', size: '125x125') %><br>
-            <% end %>
-          </td>
-          <td width="100"></td>
-          <td>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
-              <div class="container-fluid">
-                <%= link_to 'Transportadora', root_path, class: 'navbar-toggler' %>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shippingbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="shippingbar">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <%= link_to 'Início', root_path, class: 'nav-link active' %>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <%= link_to 'Cotação', orders_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
-                      <ul class="dropdown-menu">
-                        <li><%= link_to 'Criar ordem', new_order_path, class: "dropdown-item" %></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <% if params[:id].nil? %>
-                          <li><%= link_to 'Editar ordem', orders_path, class: "nav-link disabled" %></li>
-                        <% else current_page?(order_path(params[:id])) %>
-                          <li><%= link_to 'Editar ordem', edit_order_path, class: "dropdown-item" %></li>
-                        <% end %>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Orçamento', orders_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Iniciar pedido', orders_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Finalizar pedido', orders_path, class: "dropdown-item" %></li>
-                      </ul>
-                    </li>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <%= link_to 'Veículos', vehicles_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
-                      <ul class="dropdown-menu">
-                        <li><%= link_to 'Cadastrar Veículo', new_vehicle_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Editar cadastro Veículo', vehicles_path, class: "dropdown-item" %></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'lista de veículos', vehicles_path, class: "dropdown-item" %></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><%= link_to 'Cadastrar modelo de veículo', new_vehicle_type_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Cadastrar categoria de veículo', new_vehicle_category_path, class: "dropdown-item" %></li>
-                      </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <%= link_to 'Modalidades', shippings_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
-                      <ul class="dropdown-menu">
-                        <li><%= link_to 'Cadastrar modalidade', new_shipping_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Cadastrar Custo', new_cost_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Cadastrar Prazo', new_deliv_term_path, class: "dropdown-item" %></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <% if params[:id].nil? %>
-                          <li><%= link_to 'Editar Modalidade', shippings_path, class: "nav-link disabled" %></li>
-                        <% else current_page?(shipping_path(params[:id])) %>
-                          <li><%= link_to 'Editar Modalidade', edit_shipping_path, class: "dropdown-item" %></li>
-                        <% end %>
-                        <li><%= link_to 'Editar Custo', shippings_path, class: "dropdown-item" %></li>
-                        <li><%= link_to 'Editar Prazo', shippings_path, class: "dropdown-item" %></li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a class="nav-link disabled">Pedido</a>
-                    </li>
-                    <li class="nav-item">
-                      <% if user_signed_in? %>
-                        <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn bt-light' %>
-                        <strong><%= current_user.name %></strong> | <%= current_user.email %>
-                      <% else %>
-                        <%= link_to 'Entrar', new_user_session_path, class: 'nav-link active' %>
+      <div class="row bg-body-tertiary">
+        <div class="col-1">
+        </div>
+        <div class="col-2" align="center">
+          <%= link_to root_path do%>
+            <%= image_tag('logo.png', size: '125x125') %><br>
+          <% end %>
+        </div>
+        <div class="col-8" align="right">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#shippingbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="shippingbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <%= link_to 'Início', root_path, class: 'nav-link active' %>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <%= link_to 'Cotação', orders_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Criar ordem', new_order_path, class: "dropdown-item" %></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <% if params[:id].nil? %>
+                        <li><%= link_to 'Editar ordem', orders_path, class: "nav-link disabled" %></li>
+                      <% else current_page?(order_path(params[:id])) %>
+                        <li><%= link_to 'Editar ordem', edit_order_path, class: "dropdown-item" %></li>
                       <% end %>
-                    </li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><%= link_to 'Orçamento', orders_path, class: "dropdown-item" %></li>
+                      <% if params[:id].nil? %>
+                        <li><%= link_to 'Iniciar pedido', process_orders_path, class: "nav-link disabled" %></li>
+                      <% else current_page?(process_order_path(params[:id])) %>
+                        <li><%= link_to 'Iniciar pedido', process_order_path, class: "dropdown-item" %></li>
+                      <% end %>
+                      <li><%= link_to 'Finalizar pedido', orders_path, class: "dropdown-item" %></li>
+                    </ul>
+                  </li>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <%= link_to 'Veículos', vehicles_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Cadastrar Veículo', new_vehicle_path, class: "dropdown-item" %></li>
+                      <li><%= link_to 'Editar cadastro Veículo', vehicles_path, class: "dropdown-item" %></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><%= link_to 'lista de veículos', vehicles_path, class: "dropdown-item" %></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><%= link_to 'Cadastrar modelo de veículo', new_vehicle_type_path, class: "dropdown-item" %></li>
+                      <li><%= link_to 'Cadastrar categoria de veículo', new_vehicle_category_path, class: "dropdown-item" %></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <%= link_to 'Modalidades', shippings_path, class: "nav-link dropdown-toggle", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded':"false" %>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Cadastrar modalidade', new_shipping_path, class: "dropdown-item" %></li>
+                      <li><%= link_to 'Cadastrar Custo', new_cost_path, class: "dropdown-item" %></li>
+                      <li><%= link_to 'Cadastrar Prazo', new_deliv_term_path, class: "dropdown-item" %></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <% if params[:id].nil? %>
+                        <li><%= link_to 'Editar Modalidade', shippings_path, class: "nav-link disabled" %></li>
+                      <% else current_page?(shipping_path(params[:id])) %>
+                        <li><%= link_to 'Editar Modalidade', edit_shipping_path, class: "dropdown-item" %></li>
+                      <% end %>
+                      <li><%= link_to 'Editar Custo', shippings_path, class: "dropdown-item" %></li>
+                      <li><%= link_to 'Editar Prazo', shippings_path, class: "dropdown-item" %></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="nav-link disabled">Pedido</a>
+                  </li>
+                  <li class="nav-item">
+                    <% if user_signed_in? %>
+                      <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn bt-light' %>
+                      <strong><%= current_user.name %></strong> | <%= current_user.email %>
+                    <% else %>
+                      <%= link_to 'Entrar', new_user_session_path, class: 'nav-link active' %>
+                    <% end %>
+                  </li>
 
-                  </ul>
-                </div>
+                </ul>
               </div>
-            </nav>
-          </td>
-        </tr>
-      </table>
+            </div>
+          </nav><br>
+        </div>
+        <div class="col-1">
+        </div>
+      </div>
     </header>
     <main>
-      <div>
-        <%= alert %>
-        <%= notice %>
+      <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+          <div>
+            <%= alert %>
+            <%= notice %>
+          </div>
+          <%= yield %>
+        </div>
+        <div class="col-2">
+        </div>
       </div>
-      <%= yield %>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-  </body>
   </body>
 </html>

@@ -8,9 +8,9 @@ describe 'Usuário edita um veículo' do
       vehicle_cat2 = VehicleCategory.create!(category: 'Sedan médio')
       vehicle_typ2 = VehicleType.create!(manufacturer_vehicle: 'GM', model_vehicle: 'Prisma')
       vehicle1 = Vehicle.create!(license_plate: '0EM-7777', manufature_year: '2020', maximum_load_capacity: '1000',
-                                 vehicle_types_id: vehicle_typ1.id, vehicle_categories_id: vehicle_cat1.id)
+                                vehicle_type: vehicle_typ1, vehicle_category: vehicle_cat1)
       vehicle1 = Vehicle.create!(license_plate: '0EM-9999', manufature_year: '2022', maximum_load_capacity: '400',
-                                 vehicle_types_id: vehicle_typ2.id, vehicle_categories_id: vehicle_cat2.id)
+                                 vehicle_type: vehicle_typ2, vehicle_category: vehicle_cat2)
       visit root_path
       click_on 'Veículos'
       click_on 'lista de veículo'
@@ -36,9 +36,9 @@ describe 'Usuário edita um veículo' do
       vehicle_cat2 = VehicleCategory.create!(category: 'Sedan médio')
       vehicle_typ2 = VehicleType.create!(manufacturer_vehicle: 'GM', model_vehicle: 'Prisma')
       vehicle1 = Vehicle.create!(license_plate: '0EM-7777', manufature_year: '2020', maximum_load_capacity: '1000',
-                                 vehicle_types_id: vehicle_typ1.id, vehicle_categories_id: vehicle_cat1.id)
+                                vehicle_type: vehicle_typ1, vehicle_category: vehicle_cat1)
       vehicle1 = Vehicle.create!(license_plate: '0EM-9999', manufature_year: '2022', maximum_load_capacity: '400',
-                                 vehicle_types_id: vehicle_typ2.id, vehicle_categories_id: vehicle_cat2.id)
+                                vehicle_type: vehicle_typ2, vehicle_category: vehicle_cat2)
       visit root_path
       click_on 'Veículos'
       click_on 'lista de veículo'

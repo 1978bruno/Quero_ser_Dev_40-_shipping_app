@@ -13,8 +13,8 @@ pt-BR:
     attributes:
       vehicle:
         license_plate: 'Placa do Veículo'
-        vehicle_types_id: 'Tipo do veículo'
-        vehicle_categories_id: 'Categoria'
+        vehicle_type_id: 'Tipo do veículo'
+        vehicle_category_id: 'Categoria'
         manufature_year: 'Ano de Fabricação'
         maximum_load_capacity: 'Capacidade máxima de carga'
         status: 'Situação'

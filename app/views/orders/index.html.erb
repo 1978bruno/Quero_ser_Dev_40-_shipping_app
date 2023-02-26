@@ -2,11 +2,11 @@
 <br>
 
 <% if @order.empty? %>
-  <p> Nenhum veículo cadastrado</p>
+  <p>Nenhuma ordem cadastrada neste usuário</p>
 <% else %>
   <div class="row">
     <% @order.each do |order| %>
-      <div class="col-3">
+      <div class="col">
         <%= render order %>
       </div>
     <% end %>

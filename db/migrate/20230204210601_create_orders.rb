@@ -18,6 +18,10 @@ class CreateOrders < ActiveRecord::Migration[7.0]
       t.string :deliv_city
       t.string :deliv_state
       t.integer :km_dist
+      t.integer :deliv_zip
+      t.integer :collect_zip
+      t.integer :status, default: 0
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
