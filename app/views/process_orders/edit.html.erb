@@ -50,14 +50,16 @@
           <h5 class="card-title" align="center"><%=shipping.name %></h5>
           <p class="card-text">
             <strong>Valor total da operação:    </strong><br>
-            <%= total_cost = number_to_currency(@cost.find_by(shipping: shipping).km_value * @order.km_dist + shipping.deliv_fee) %><br>
+            <% total_cost = @cost.find_by(shipping: shipping).km_value * @order.km_dist + shipping.deliv_fee %>
+            <%= number_to_currency(total_cost) %><br>
             (Valor do km rodado: <%= number_to_currency(@cost.find_by(shipping: shipping).km_value) %>)<br>
             <strong>Valor de taxa de entrega:   </strong><br><%= number_to_currency(shipping.deliv_fee) %><br>
             <strong>Tempo total da operação:    </strong><br><%= @deliv_term.find_by(shipping: shipping).deliv_term %>dias<br>
             <strong>Transporte disponível:    </strong><br><%= @vehicle.license_plate %><br>
             <%= @vehicle_type.manufacturer_vehicle %> - <%= @vehicle_type.model_vehicle %><br><br><br>
           </p>
-          <%= link_to "iniciar entrega", select_modal_order_path(shipping.id), class: "btn btn-primary", id: "#{params[:id]}" %>
+          <%= link_to "iniciar entrega", select_modal_order_path(:shipping_id => shipping.id, :vehicle_id => @vehicle.id, 
+                              :order_id => @order.id, :total_cost => total_cost), class: "btn btn-primary", id: "#{params[:id]}" %>
         </div>
       </div>
     </div>

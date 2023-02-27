@@ -30,7 +30,7 @@ class ShippingsController < ApplicationController
     redirect_to shipping_path(shipping_params)
   end
   def active
-    Shipping.update(params[:id], status: 3)
+    Shipping.update(params[:id], status: 1)
     redirect_to root_path
   end
   def disable

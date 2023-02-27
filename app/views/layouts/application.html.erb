@@ -42,11 +42,7 @@
                       <% end %>
                       <li><hr class="dropdown-divider"></li>
                       <li><%= link_to 'Orçamento', orders_path, class: "dropdown-item" %></li>
-                      <% if params[:id].nil? %>
-                        <li><%= link_to 'Iniciar pedido', process_orders_path, class: "nav-link disabled" %></li>
-                      <% else current_page?(process_order_path(params[:id])) %>
-                        <li><%= link_to 'Iniciar pedido', process_order_path, class: "dropdown-item" %></li>
-                      <% end %>
+                      <li><%= link_to 'Pedido em entrega', delivering_orders_path, class: "dropdown-item" %></li>
                       <li><%= link_to 'Finalizar pedido', orders_path, class: "dropdown-item" %></li>
                     </ul>
                   </li>

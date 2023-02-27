@@ -1,0 +1,14 @@
+<h1 align="center">Lista de pedidos em entega</h1>
+<br>
+
+<% if @order.empty? %>
+  <p>Nenhum pedido em entrega neste usuário</p>
+<% else %>
+  <div class="row">
+    <% @order.each do |order| %>
+      <div class="col">
+        <%= render order %>
+      </div>
+    <% end %>
+</div>
+<% end %>

@@ -13,31 +13,25 @@ class OrdersController < ApplicationController
     else
       if @order.collect_street.empty? || @order.deliv_street.empty?
         if @order.collect_zip.present?
-          if @order.collect_zip.to_s.length == 8
-            api_collect = JSON.parse(Faraday.get("https://viacep.com.br/ws/#{@order.collect_zip}/json/").body)
-            if api_collect['erro'] != true
-              @order.collect_street = api_collect['logradouro']
-              @order.collect_nhood = api_collect['bairro']
-              @order.collect_city = api_collect['localidade']
-              @order.collect_state = api_collect['uf']
-            else
-              flash.now[:alert] = 'CEP do remetente inexistente'
-            end
+          zip_code_colect = @order.collect_zip.to_s.rjust(8, '0')
+          api_collect = JSON.parse(Faraday.get("https://viacep.com.br/ws/#{zip_code_colect}/json/").body)
+          if api_collect['erro'] != true
+            @order.collect_street = api_collect['logradouro']
+            @order.collect_nhood = api_collect['bairro']
+            @order.collect_city = api_collect['localidade']
+            @order.collect_state = api_collect['uf']
           else
             flash.now[:alert] = 'CEP do remetente inexistente'
           end
         end
         if @order.deliv_zip.present?
-          if @order.deliv_zip.to_s.length == 8
-            api_deliv = JSON.parse(Faraday.get("https://viacep.com.br/ws/#{@order.deliv_zip}/json/").body)
-            if api_deliv['erro'] != true
-              @order.deliv_street = api_deliv['logradouro']
-              @order.deliv_nhood = api_deliv['bairro']
-              @order.deliv_city = api_deliv['localidade']
-              @order.deliv_state = api_deliv['uf']
-            else
-              flash.now[:alert] = 'CEP do destinatário inexistente'
-            end
+          zip_code_deliv = @order.deliv_zip.to_s.rjust(8, '0')
+          api_deliv = JSON.parse(Faraday.get("https://viacep.com.br/ws/#{zip_code_deliv}/json/").body)
+          if api_deliv['erro'] != true
+            @order.deliv_street = api_deliv['logradouro']
+            @order.deliv_nhood = api_deliv['bairro']
+            @order.deliv_city = api_deliv['localidade']
+            @order.deliv_state = api_deliv['uf']
           else
             flash.now[:alert] = 'CEP do destinatário inexistente'
           end
@@ -75,9 +69,22 @@ class OrdersController < ApplicationController
       redirect_to order_path(@order), notice: 'Dados do veículo atualizados com sucesso'
     end
   end
-  def select_modal(shipping, order, vehicle, total_cost)
-    @process_oreder = ProcessOrder.create!(shipping, order, vehicle, total_cost)
-    
-    redirect_to banana_path
+  def select_modal
+
+    ProcessOrder.create!(order_id: params[:order_id], shipping_id: params[:shipping_id], vehicle_id: params[:vehicle_id], total_cost: params[:total_cost])
+
+    redirect_to order_path(params[:order_id])
+  end
+  def canceled
+    Order.update(params[:id], status: 2)
+    return_to order_path(params[:id])
+  end
+  def delivered
+    Order.update(params[:id], status: 1)
+    return_to order_path(params[:id])
+  end
+  def delivering
+    @order = Order.where(status: "delivering")
+
   end
 end

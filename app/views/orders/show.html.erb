@@ -45,11 +45,11 @@
     <% if @order.status == "delivered" || @order.status == "canceled" %>
 
     <% elsif @order.status == "delivering" %>
-      <%= link_to "Entregue", process_order_path, class: 'btn btn-light'%>
+      <%= link_to "Entregue", delivered_order_path, class: 'btn btn-light'%>
 
     <% else %>
       <%= link_to 'Editar', edit_order_path(@order.id), class: 'btn btn-light' %>
-      <%= link_to "Cancelar", process_order_path, class: 'btn btn-light'%><br>
+      <%= link_to "Cancelar", canceled_order_path, class: 'btn btn-light'%><br>
       <%= link_to 'Iniciar o pedido', edit_process_order_path(@order.id), class: 'btn btn-light' %>
     <% end %>
   </div>

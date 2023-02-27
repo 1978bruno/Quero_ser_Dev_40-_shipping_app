@@ -30,13 +30,4 @@ class ProcessOrdersController < ApplicationController
     
   end
 
-  def canceled
-    Order.update(params[:id], status: 2)
-    return_to order_path(params[:id])
-  end
-  def delivered
-    Order.update(params[:id], status: 1)
-    return_to order_path(params[:id])
-  end
-
 end

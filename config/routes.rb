@@ -18,8 +18,9 @@ Rails.application.routes.draw do
   resources :process_orders, only: [:index, :show, :edit, :create]
   resources :orders, only: [:index, :create, :new, :show, :edit, :update] do
     get 'search', on: :collection
-    post 'select_modal', on: :member
+    get 'select_modal', on: :member
     post 'canceled', on: :member
     post 'delivered', on: :member
+    get 'delivering', on: :collection
   end
 end
