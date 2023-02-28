@@ -1,3 +1,31 @@
+<table class="table table-light table-hover">
+<thead>
+  <tr align='center'>
+    <th scope="col"><strong><%= Vehicle.human_attribute_name(:license_plate) %></strong></th>
+    <th scope="col"> <strong><%= Vehicle.human_attribute_name(:manufacturer_vehicle) %></th>
+    <th scope="col"><strong><%= Vehicle.human_attribute_name(:model_vehicle) %></th>
+    <th scope="col"><strong><%= Vehicle.human_attribute_name(:manufature_year) %></th>
+    <th scope="col"><strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %></th>
+    <th scope="col"><strong><%= Vehicle.human_attribute_name(:status) %></th>
+    <th scope="col">#</th>
+  </tr>
+</thead>
+<tbody>
+  <% @vehicles.each do |vehicle| %>
+    <tr align='center'>
+      <td><%= link_to vehicle.license_plate, edit_vehicle_path(vehicle.id) %></td>
+      <td><%= @vehicle_types.find(vehicle.vehicle_type_id).manufacturer_vehicle %></td>
+      <td><%= @vehicle_types.find(vehicle.vehicle_type_id).model_vehicle %></td>
+      <td><%= @vehicle_categories.find(vehicle.vehicle_category_id).category %></td>
+      <td><%= vehicle.manufature_year %></td>
+      <td><%= I18n.t(vehicle.status) %></td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+
+
+
 <div class="card" style="width: 20rem;">
   <div class="card-body">
     <h5 class="card-title" align="center"><strong><%= Vehicle.human_attribute_name(:license_plate) %></strong></h5>

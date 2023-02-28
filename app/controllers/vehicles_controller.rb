@@ -7,7 +7,7 @@ class VehiclesController < ApplicationController
 
   def create
     vehicle_params = params.require(:vehicle).permit(:license_plate, :manufature_year, :maximum_load_capacity,
-                                                     :vehicle_category_id, :vehicle_type_id, :status)
+                                                     :vehicle_category_id, :vehicle_type_id)
     @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
       redirect_to vehicles_path, notice: 'Veículo cadastrado com sucesso'

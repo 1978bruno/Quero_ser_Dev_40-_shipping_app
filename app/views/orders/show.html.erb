@@ -45,6 +45,13 @@
     <% if @order.status == "delivered" || @order.status == "canceled" %>
 
     <% elsif @order.status == "delivering" %>
+      <strong>Modalidade de transporte:    </strong><br><%= @shipping.name %>
+      <strong>Valor total da operação:    </strong><br><%= number_to_currency(@process_order.total_cost) %><br>
+      (Valor do km rodado: <%= number_to_currency(@cost.km_value) %>)<br>
+      <strong>Valor de taxa de entrega:   </strong><br><%= number_to_currency(@shipping.deliv_fee) %><br>
+      <strong>Tempo total da operação:    </strong><br><%= @deliv_term.deliv_term %>dias<br>
+      <strong>Transporte disponível:    </strong><br><%= @vehicle.license_plate %><br>
+      <%= @vehicle_type.manufacturer_vehicle %> - <%= @vehicle_type.model_vehicle %> - <%= @vehicle.manufature_year %><br><br><br>
       <%= link_to "Entregue", delivered_order_path, class: 'btn btn-light'%>
 
     <% else %>

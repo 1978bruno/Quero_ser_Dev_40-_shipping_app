@@ -4,7 +4,7 @@ describe 'Usuário visualiza tela inicial da Transportadora' do
   it 'e vê o nome do app' do
     visit(root_path)
 
-    expect(page).to have_content('Transportadora')
+    expect(page).to have_content('Lista de modalidades')
   end
 
   it 'e vê as modalidade de transportes cadastras' do

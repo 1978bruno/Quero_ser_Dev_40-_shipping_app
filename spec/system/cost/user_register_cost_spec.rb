@@ -41,9 +41,9 @@ describe 'Usuário parametriza relação preço X peso' do
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Cadastro realizado com sucesso'
-    expect(page).to have_content 'Menor peso do intervalo: 125kg'
-    expect(page).to have_content 'Maior peso do intervalo: 150kg'
-    expect(page).to have_content 'Valor do KM: R$ 15'
+    expect(page).to have_content '125kg'
+    expect(page).to have_content '150kg'
+    expect(page).to have_content 'R$ 15'
   end
   it 'sem sucesso' do
     User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')

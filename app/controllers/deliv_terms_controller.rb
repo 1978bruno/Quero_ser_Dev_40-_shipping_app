@@ -10,7 +10,8 @@ class DelivTermsController < ApplicationController
     @shipping = Shipping.find(@deliv_term.shipping_id)
     if @deliv_term.save
       flash.now[:notice] = 'Cadastro realizado com sucesso'
-      @cost = Cost.find_by(shipping_id: @deliv_term.shipping_id)
+      @cost = Cost.where(shipping: @shipping)
+      @deliv_term = DelivTerm.where(shipping: @shipping)
       render 'shippings/show'
     else
       @shipping = Shipping.all

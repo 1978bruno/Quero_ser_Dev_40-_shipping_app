@@ -27,30 +27,39 @@ describe 'Usuário cria ordem de entrega' do
     expect(page).to have_field('Endereço de entrega')
     expect(page).to have_field('Distância em KM')
   end
-  it 'e digita o CEP inexistente' do
+  it 'e digita o CEP de coleta inexistente' do
     User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
     allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
 
     visit root_path
+    click_on 'Cotação'
     click_on 'Criar ordem'
     within('form') do
       fill_in 'E-mail', with: 'bruno@email.com'
       fill_in 'Senha', with: 'password'
       click_on 'Entrar'
     end
-    fill_in 'CEP de coleta', with: 0o1010101
-    fill_in 'Número de coleta', with: 205
-    fill_in 'Largura', with: 10
-    fill_in 'Altura', with: 12
-    fill_in 'Profundidade', with: 13
-    fill_in 'Peso', with: 20
-    fill_in 'Nome do destinatário', with: 'Um Dois Três de Oliveira Quatro'
-    fill_in 'CEP de entrega', with: 39_400_215
-    fill_in 'Número de entrega', with: 105
-    fill_in 'Distância em KM', with: 360
-    click_on 'Cadastrar'
+    fill_in 'CEP de coleta', with: 11010101
+    click_on 'Endereço de coleta'
 
-    expect(page).to have_content 'CEP inexixtente'
+    expect(page).to have_content 'CEP do remetente inexistente'
+  end
+  it 'e digita o CEP de destino inexistente' do
+    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
+
+    visit root_path
+    click_on 'Cotação'
+    click_on 'Criar ordem'
+    within('form') do
+      fill_in 'E-mail', with: 'bruno@email.com'
+      fill_in 'Senha', with: 'password'
+      click_on 'Entrar'
+    end
+    fill_in 'CEP de entrega', with: 11010101
+    click_on 'Endereço de entrega'
+
+    expect(page).to have_content 'CEP do destinatário inexistente'
   end
   it 'sem sucesso' do
     User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')

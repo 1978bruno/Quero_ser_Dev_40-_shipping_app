@@ -1,10 +1,9 @@
 <h2 align="center">Detalhes da modalidade</h2>
 <br>
-<div>
-  <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br><br>
-</div>
+<br>
 <div class="row">
   <div class="col-3">
+    <strong>Nome da Modalidade:   </strong><%= @shipping.name %><br><br>
     <strong>Distância mínima:     </strong><%= @shipping.min_dist %>km<br>
     <strong>Distância máxima:     </strong><%= @shipping.max_dist %>km<br>
     <strong>Peso mínimo da carga: </strong><%= @shipping.min_weight %>kg<br>
@@ -19,20 +18,47 @@
       </div>
     <% else %>
       <div class="col">
-        <h5> Custos </h5>
-        <% @cost.each do |cost| %>
-          <strong>Menor peso do intervalo:    </strong><%= cost.int_min_weight %>kg<br>
-          <strong>Maior peso do intervalo:    </strong><%= cost.int_max_weight %>kg<br>
-          <strong>Valor do KM:                </strong>R$ <%= number_to_currency(cost.km_value) %><br><br>
-        <% end %>
-      </div>
-      <div class="col">
-        <h5> Prazos </h5>
-        <% @deliv_term.each do |deliv_term| %>
-          <strong>Menor peso do intervalo:    </strong><%= deliv_term.term_int_min_weight %>kg<br>
-          <strong>Maior peso do intervalo:    </strong><%= deliv_term.term_int_max_weight %>kg<br>
-          <strong>Prazo de entrega:           </strong><%= deliv_term.deliv_term %> dias<br><br>
-        <% end %>
+        <h5 align='center'> Custos </h5>
+        <table class="table table-light table-hover">
+          <thead>
+            <tr align='center'>
+              <th scope="col">Menor peso do intervalo</th>
+              <th scope="col">Maior peso do intervalo</th>
+              <th scope="col">Valor do KM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cost.each do |cost| %>
+              <tr align='center'>
+                <td><%= cost.int_min_weight %>kg</td>
+                <td><%= cost.int_max_weight %>kg</td>
+                <td><%= number_to_currency(cost.km_value) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <h5 align='center'> Prazos </h5>
+
+        <table class="table table-light table-hover">
+          <thead>
+            <tr align='center'>
+              <th scope="col">Menor peso do intervalo</th>
+              <th scope="col">Maior peso do intervalo</th>
+              <th scope="col">Prazo de entrega</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @deliv_term.each do |deliv_term| %>
+              <tr align='center'>
+                <td><%= deliv_term.term_int_min_weight %>kg</td>
+                <td><%= deliv_term.term_int_max_weight %>kg</td>
+                <td><%= deliv_term.deliv_term %> dias</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
       </div>
     <% end %>
   <%= link_to('Voltar', root_path) %>

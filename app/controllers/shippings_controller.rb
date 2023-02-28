@@ -25,7 +25,7 @@ class ShippingsController < ApplicationController
   def update
     shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
                                                       :min_weight, :max_weight,
-                                                      :deliv_fee, :status)
+                                                      :deliv_fee)
     Shipping.update(params[:id], shipping_params)
     redirect_to shipping_path(shipping_params)
   end

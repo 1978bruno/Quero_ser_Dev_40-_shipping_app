@@ -1,24 +1,55 @@
-# README
+# Database diagram:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Arquivo README_db_schema.png na raíz do app.
 
-Things you may want to cover:
+# Instalação:
 
-* Ruby version
+bin/setup
+yarn install
+yarn build
 
-* System dependencies
 
-* Configuration
+# Pré-populando o DB (Seeds):
 
-* Database creation
+Rodar rails db:seed
+carregar informação no bando de dados.
 
-* Database initialization
 
-* How to run the test suite
+# Testes:
 
-* Services (job queues, cache servers, search engines, etc.)
+RSpec
+bundler exec rspec
 
-* Deployment instructions
+# Descritivo:
 
-* ...
+A aplicação te possibilita 
+  -> criar modalidades de transporte
+  -> criar tabela de valores do transporte
+  -> criar tabela de prazo de entrega para o transporte
+  -> acessar lista de modalidades
+  -> cadastrar veiculos
+  -> editar cadastro de veículos
+  -> cadastrar tipos de veículos
+  -> cadastrar categorias de veículos
+  -> gerar lista de veículos cadastrados
+  -> criar pedidos
+  -> editar cadastro de pedidos
+  -> iniciar pedido
+  -> selecionar modalidade
+  -> acessar detalhes do pedido
+  -> finalizar pedido
+  -> cancelar pedido
+
+Características:
+  -> não é possível editar pedido depois de iniciado
+  -> não e possivel cancelar o pedido após iniciado
+  -> não é possivel editar tipos e categorias de veículos
+  
+
+
+
+
+# Executando a aplicação:
+
+
+Login: user@email.com.br | Senha: pwd123456

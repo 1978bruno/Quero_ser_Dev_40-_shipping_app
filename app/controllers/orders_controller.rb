@@ -46,6 +46,14 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
+    @process_order = ProcessOrder.where(order_id: params[:id]).take
+    if @process_order.present?
+      @shipping = Shipping.where(id: @process_order.shipping_id).take
+      @cost = Cost.where(shipping_id: @shipping).take
+      @deliv_term = DelivTerm.where(shipping_id: @shipping).take
+      @vehicle = Vehicle.where(id: @process_order.vehicle_id).take
+      @vehicle_type = VehicleType.where(id: @vehicle).take
+    end
   end
   def index
     if current_user.nil?
@@ -62,29 +70,32 @@ class OrdersController < ApplicationController
     order_params = params.require(:order).permit(:collect_street, :collect_number, :collect_nhood, :collect_city, :collect_state, :width, 
                                                 :height, :depth, :weight, :deliv_reipient, :deliv_street, :deliv_number, :deliv_nhood, 
                                                 :deliv_city, :deliv_state, :km_dist, :deliv_zip, :collect_zip)
-    @order = Order.update(params[:id], order_params)
-    if order_params.empty?
-      redirect_to order_path(@order), notice: 'Não foi possível atualizar os dados do veículo.'
+
+    if Order.update(params[:id], order_params)
+      redirect_to order_path(params[:id]), notice: 'Não foi possível atualizar o pedido.'
     else
-      redirect_to order_path(@order), notice: 'Dados do veículo atualizados com sucesso'
+      redirect_to order_path(params[:id]), notice: 'Pedido atualizados com sucesso'
     end
   end
   def select_modal
-
     ProcessOrder.create!(order_id: params[:order_id], shipping_id: params[:shipping_id], vehicle_id: params[:vehicle_id], total_cost: params[:total_cost])
-
+    Vehicle.update(params[:vehicle_id], status: 2)
+    Order.update(params[:id], status: 3)
     redirect_to order_path(params[:order_id])
   end
   def canceled
     Order.update(params[:id], status: 2)
-    return_to order_path(params[:id])
+    vehicle_id = ProcessOrder.where(order_id: params[:id]).vehicle_id
+    Vehicle.update(params[vehicle_id, status: 1])
+    return_to order_path(params[:order_id])
   end
   def delivered
     Order.update(params[:id], status: 1)
+    vehicle_id = ProcessOrder.where(order_id: params[:id]).vehicle_id
+    Vehicle.update(params[vehicle_id, status: 1])
     return_to order_path(params[:id])
   end
   def delivering
     @order = Order.where(status: "delivering")
-
   end
 end

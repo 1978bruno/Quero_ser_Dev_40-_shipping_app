@@ -22,13 +22,8 @@ describe 'Usuário edita um veículo' do
       click_on 'Gravar'
 
       expect(page).to have_content 'Dados do veículo atualizados com sucesso'
-      expect(page).to have_content 'Categoria: PickUp'
-      expect(page).to have_content 'Marca: VW'
-      expect(page).to have_content 'Modelo: Amarok'
-      expect(page).to have_content 'HHV-0880'
-      expect(page).to have_content 'Ano de Fabricação: 2020'
-      expect(page).to have_content 'Capacidade máxima de carga: 500kg'
-      expect(page).to have_content 'Situação: inativo'
+      expect(page).to have_content 'HHV-0880 VW Amarok 2020 500 kg PickUp inativo'
+      expect(page).to have_content '0EM-9999 GM Prisma 2022 400 kg Sedan médio inativo'
     end
     it 'sem sucesso' do
       vehicle_cat1 = VehicleCategory.create!(category: 'PickUp')

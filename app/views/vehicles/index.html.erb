@@ -3,11 +3,49 @@
 <% if @vehicles.empty? %>
   <p> Nenhum veículo cadastrado</p>
 <% else %>
-    <div class="row">
+  <table class="table table-light table-hover">
+  <thead>
+    <tr align='center'>
+      <th scope="col"><strong><%= Vehicle.human_attribute_name(:license_plate) %></strong></th>
+      <th scope="col"> <strong><%= Vehicle.human_attribute_name(:manufacturer_vehicle) %></th>
+      <th scope="col"><strong><%= Vehicle.human_attribute_name(:model_vehicle) %></th>
+      <th scope="col"><strong><%= Vehicle.human_attribute_name(:manufature_year) %></th>
+      <th scope="col"><strong><%= Vehicle.human_attribute_name(:maximum_load_capacity) %></th>
+      <th scope="col"><strong><%= Vehicle.human_attribute_name(:category) %></th>
+      <th scope="col"><strong><%= Vehicle.human_attribute_name(:status) %></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
     <% @vehicles.each do |vehicle| %>
-      <div class="col">
-        <%= render vehicle %>
-      </div>
+      <tr align='center'>
+        <td><%= link_to vehicle.license_plate, edit_vehicle_path(vehicle.id) %></td>
+        <td><%= @vehicle_types.find(vehicle.vehicle_type_id).manufacturer_vehicle %></td>
+        <td><%= @vehicle_types.find(vehicle.vehicle_type_id).model_vehicle %></td>
+        <td><%= vehicle.manufature_year %></td>
+        <td><%= vehicle.maximum_load_capacity%> kg</td>
+        <td><%= @vehicle_categories.find(vehicle.vehicle_category_id).category %></td>
+
+        <td><%= I18n.t(vehicle.status) %></td>
+        <td>
+          <%= link_to edit_vehicle_path(vehicle.id) do%>
+            <%= image_tag('edit.png',size: '12x25', alt: "editar" ) %>
+          <% end %>
+        </td>
+        <td>
+          <% if vehicle.status == 'disabled' %>
+            <%= button_to active_vehicle_path(vehicle.id), class: "btn btn-link" do %>
+              <%= image_tag('on.png', size: '25x12', alt: "Ativar" ) %>
+            <% end %>
+          <% else %>
+            <%= button_to disable_vehicle_path(vehicle.id), class: "btn btn-link" do %>
+              <%= image_tag('off.png', size: '25x12', alt: "Desativas" ) %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-  </div>
+  </tbody>
+  </table>
 <% end %>

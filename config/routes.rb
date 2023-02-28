@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     get 'select_modal', on: :member
     post 'canceled', on: :member
-    post 'delivered', on: :member
+    get 'delivered', on: :member
     get 'delivering', on: :collection
   end
 end

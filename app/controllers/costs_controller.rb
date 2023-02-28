@@ -11,7 +11,8 @@ class CostsController < ApplicationController
     @shipping = Shipping.find(cost_params[:shipping_id])
     if @cost.save
       flash.now[:notice] = 'Cadastro realizado com sucesso'
-      @deliv_term = DelivTerm.find_by(shipping_id: cost_params[:shipping_id])
+      @deliv_term = DelivTerm.where(shipping: cost_params[:shipping_id])
+      @cost = Cost.where(shipping: cost_params[:shipping_id])
       render 'shippings/show'
     else
       @shipping = Shipping.all

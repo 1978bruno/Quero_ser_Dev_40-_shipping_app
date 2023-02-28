@@ -18,13 +18,8 @@ describe 'Usuário cadastra um veículo' do
     click_on 'Gravar'
 
     expect(page).to have_content 'Veículo cadastrado com sucesso'
-    expect(page).to have_content 'Categoria: Sedan médio'
-    expect(page).to have_content 'Marca: GM'
-    expect(page).to have_content 'Modelo: Prisma'
-    expect(page).to have_content 'HHV-0880'
-    expect(page).to have_content 'Ano de Fabricação: 2020'
-    expect(page).to have_content 'Capacidade máxima de carga: 500kg'
-    expect(page).to have_content 'Situação: inativo'
+    expect(page).to have_content 'HHV-0880 GM Prisma 2020 500 kg Sedan médio inativo'
+    expect(page).not_to have_content ' ativo'
   end
   it 'sem sucesso' do
     VehicleCategory.create!(category: 'PickUp')

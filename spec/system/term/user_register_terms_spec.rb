@@ -18,9 +18,9 @@ describe 'Usuário parametriza relação prazo X distância' do
       click_on 'Entrar'
     end
 
-    expect(page).to have_field('Peso mínimo')
-    expect(page).to have_field('Peso máximo')
-    expect(page).to have_field('Prazo de entrega')
+    expect(page).to have_field 'Peso mínimo'
+    expect(page).to have_field 'Peso máximo'
+    expect(page).to have_field 'Prazo de entrega'
   end
   it 'com sucesso' do
     User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
@@ -28,7 +28,9 @@ describe 'Usuário parametriza relação prazo X distância' do
                                  deliv_fee: 1250)
     shipping0 = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
                                  deliv_fee: 250)
-    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping: shipping0)
+    Cost.create!(int_min_weight: 25, int_max_weight: 80, km_value: 0.15, shipping: shipping0)
+    Cost.create!(int_min_weight: 81, int_max_weight: 120, km_value: 0.45, shipping: shipping0)
+    Cost.create!(int_min_weight: 120, int_max_weight: 150, km_value: 0.75, shipping: shipping0)
 
     visit root_path
     click_on('Cadastrar Prazo')
@@ -44,9 +46,9 @@ describe 'Usuário parametriza relação prazo X distância' do
     click_on 'Cadastrar'
 
     expect(page).to have_content 'Cadastro realizado com sucesso'
-    expect(page).to have_content 'Menor peso do intervalo: 125kg'
-    expect(page).to have_content 'Maior peso do intervalo: 150kg'
-    expect(page).to have_content 'Prazo de entrega: 15 dias'
+    expect(page).to have_content '125kg'
+    expect(page).to have_content '150kg'
+    expect(page).to have_content '15 dias'
   end
   it 'sem sucesso' do
     User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')

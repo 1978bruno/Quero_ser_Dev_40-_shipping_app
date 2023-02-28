@@ -1,4 +1,4 @@
-def login(user)
+def login_as(user)
   within('nav') do
     click_on 'Entrar'
   end

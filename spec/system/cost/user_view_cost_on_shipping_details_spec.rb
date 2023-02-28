@@ -10,9 +10,9 @@ describe 'Usuário visualiza tabela de valores no detalhes de uma modalidade de 
     visit(root_path)
     click_on('Rio')
 
-    expect(page).to have_content('Menor peso do intervalo: 125kg')
-    expect(page).to have_content('Maior peso do intervalo: 150kg')
-    expect(page).to have_content('Valor do KM: R$ 15')
+    expect(page).to have_content('125kg')
+    expect(page).to have_content('150kg')
+    expect(page).to have_content('R$ 15')
   end
   it 'e volta para a tela inicial' do
     shipping0 = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
