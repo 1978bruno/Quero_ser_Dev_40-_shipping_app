@@ -139,10 +139,10 @@ describe 'Usuário inicia o pedido' do
     user = User.create!(name: 'User', email: 'user1@email.com', password: 'password')
     code = allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
     Order.create!(collect_zip: 11256360, collect_street: 'Rua um dois três', collect_number: 205, 
-                collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10, height: 12, 
-                depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12365480,
+                collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10, height: 12,
+                depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12_365_480,
                   deliv_street: 'Rua Condongueira', deliv_number: 105, deliv_nhood: 'Canelas', deliv_city: 'Jocacia', 
-                  deliv_state: 'MT', km_dist: 102, user:user, status: 0)
+                  deliv_state: 'MT', km_dist: 102, user: user, status: 0)
     shipping1 = Shipping.create!(name: 'GP003', min_dist: 10, max_dist: 110, min_weight: 60, max_weight: 120,
                                  deliv_fee: 250.00, status: 1)
     Cost.create!(int_min_weight: 60, int_max_weight: 80, km_value: 0.15, shipping: shipping1)
@@ -183,8 +183,8 @@ describe 'Usuário inicia o pedido' do
   it 'e encontra modalidade sem veículo de transporte disponível' do
     user = User.create!(name: 'User', email: 'user1@email.com', password: 'password')
     code = allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
-    Order.create!(collect_zip: 11256360, collect_street: 'Rua um dois três', collect_number: 205, 
-                collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10, height: 12, 
+    Order.create!(collect_zip: 11256360, collect_street: 'Rua um dois três', collect_number: 205,
+                collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10, height: 12,
                 depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12365480,
                   deliv_street: 'Rua Condongueira', deliv_number: 105, deliv_nhood: 'Canelas', deliv_city: 'Jocacia', 
                   deliv_state: 'MT', km_dist: 102, user:user, status: 0)

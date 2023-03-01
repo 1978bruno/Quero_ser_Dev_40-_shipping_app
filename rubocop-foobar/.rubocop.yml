@@ -3,3 +3,5 @@ AllCops:
 Naming/FileName:
  Exclude:
    - lib/rubocop-foobar.rb
+Style/FrozenStringLiteralComment:
+  Enabled: false
