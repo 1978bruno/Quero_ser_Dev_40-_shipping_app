@@ -2,7 +2,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :costs
-  has_many :deliv_terms
-  has_many :orders
+  has_many :orders, class_name: 'User',
+                    dependent: :destroy
 end

@@ -4,8 +4,9 @@ RSpec.describe DelivTerm, type: :model do
   describe '#valid?' do
     it 'deve ter um código' do
       shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
-                                   deliv_fee: 250)
-      deliv_term = DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15, shipping: shipping)
+                                  deliv_fee: 250)
+      deliv_term = DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15,
+                                     shipping_id: shipping.id)
 
       expect(deliv_term.valid?).to be true
       expect(deliv_term.term_int_min_weight).to eq 125

@@ -219,6 +219,10 @@ GEM
       activesupport
       bundler
       rubocop (>= 1.22.0)
+    rubocop-rails (2.18.0)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.33.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     sassc (2.4.0)
@@ -266,6 +270,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-extension-generator
+  rubocop-rails
   sprockets-rails
   sqlite3 (~> 1.4)
   tzinfo-data

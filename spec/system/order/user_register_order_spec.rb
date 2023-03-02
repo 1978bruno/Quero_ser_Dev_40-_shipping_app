@@ -8,69 +8,52 @@ describe 'Usuário cria ordem de entrega' do
     expect(current_path).to eq new_user_session_path
   end
   it 'iniciando pela tela inicial' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
 
     visit root_path
+    login_as(user)
     click_on 'Criar ordem'
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
-
-    expect(page).to have_field('Endereço de coleta')
-    expect(page).to have_field('Largura')
-    expect(page).to have_field('Altura')
-    expect(page).to have_field('Profundidade')
-    expect(page).to have_field('Peso')
-    expect(page).to have_field('Nome do destinatário')
-    expect(page).to have_field('Endereço de entrega')
-    expect(page).to have_field('Distância em KM')
+    expect(page).to have_field 'Endereço de coleta'
+    expect(page).to have_field 'Largura'
+    expect(page).to have_field 'Altura'
+    expect(page).to have_field 'Profundidade'
+    expect(page).to have_field 'Peso'
+    expect(page).to have_field 'Nome do destinatário'
+    expect(page).to have_field 'Endereço de entrega'
+    expect(page).to have_field 'Distância em KM'
   end
   it 'e digita o CEP de coleta inexistente' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
     allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
 
     visit root_path
+    login_as(user)
     click_on 'Cotação'
     click_on 'Criar ordem'
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
-    fill_in 'CEP de coleta', with: 11010101
+    fill_in 'CEP de coleta', with: 11_010_101
     click_on 'Endereço de coleta'
 
     expect(page).to have_content 'CEP do remetente inexistente'
   end
   it 'e digita o CEP de destino inexistente' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
     allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
 
     visit root_path
+    login_as(user)
     click_on 'Cotação'
     click_on 'Criar ordem'
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
-    fill_in 'CEP de entrega', with: 11010101
+    fill_in 'CEP de entrega', with: 11_010_101
     click_on 'Endereço de entrega'
 
     expect(page).to have_content 'CEP do destinatário inexistente'
   end
   it 'sem sucesso' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
 
     visit root_path
+    login_as(user)
     click_on 'Criar ordem'
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     fill_in 'CEP de coleta', with: 32_223_380
     fill_in 'Endereço de coleta', with: 'Rua um dois três'
     fill_in 'Número de coleta', with: ''
@@ -95,16 +78,12 @@ describe 'Usuário cria ordem de entrega' do
     expect(page).to have_content 'Número de coleta não pode ficar em branco'
   end
   it 'com sucesso' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
     allow(SecureRandom).to receive(:alphanumeric).with(15).and_return('ABCD12345678912')
 
     visit root_path
+    login_as(user)
     click_on 'Criar ordem'
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
     fill_in 'CEP de coleta', with: 32_223_380
     click_on 'Endereço de coleta'
     fill_in 'Número de coleta', with: 205

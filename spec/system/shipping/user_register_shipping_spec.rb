@@ -2,18 +2,23 @@ require 'rails_helper'
 
 describe 'Usuário cadastra nova modalidade de transporte' do
   it 'iniciando pela tela inicial' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     visit root_path
-    click_on('Cadastrar modalidade')
+    login_as(user)
+    click_on 'Cadastrar modalidade'
 
-    expect(page).to have_field('Nome')
-    expect(page).to have_field('Distância mínima')
-    expect(page).to have_field('Distância máxima')
-    expect(page).to have_field('Peso mínimo')
-    expect(page).to have_field('Peso máximo')
-    expect(page).to have_field('Tarifa de entrega')
+    expect(page).to have_field 'Nome'
+    expect(page).to have_field 'Distância mínima'
+    expect(page).to have_field 'Distância máxima'
+    expect(page).to have_field 'Peso mínimo'
+    expect(page).to have_field 'Peso máximo'
+    expect(page).to have_field 'Tarifa de entrega'
   end
   it 'com sucesso' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
+
     visit root_path
+    login_as(user)
     click_on 'Cadastrar modalidade'
     fill_in 'Nome',             with: 'MOC'
     fill_in 'Distância mínima', with: '100'
@@ -29,7 +34,9 @@ describe 'Usuário cadastra nova modalidade de transporte' do
     expect(page).to have_content '800'
   end
   it 'e habilitar o botao de status' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     visit root_path
+    login_as(user)
     click_on 'Cadastrar modalidade'
     fill_in 'Nome',             with: 'MOC'
     fill_in 'Distância mínima', with: '100'

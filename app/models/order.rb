@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :process_orders
+  has_one :process_order, class_name: 'Order',
+                          dependent: :destroy
 
   enum status: { pending: 0, delivered: 1, canceled: 2, delivering: 3 }
 

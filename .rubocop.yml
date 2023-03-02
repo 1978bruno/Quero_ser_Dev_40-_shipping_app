@@ -1,2 +1,27 @@
+require:
+  - rubocop-rails
+
 AllCops:
-  SuggestExtensions: false
+  TargetRubyVersion: 3.1.2
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'vendor/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+    - 'spec/rails_helper.rb'
+    - 'rubocop-foobar/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/BlockLength:
+  AllowedMethods: ['describe', 'context', 'feature', 'scenario', 'let', 'it']
+
+Layout/EndOfLine:
+   Enabled: False

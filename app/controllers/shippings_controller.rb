@@ -1,12 +1,19 @@
 class ShippingsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new edit]
   def show
     @shipping = Shipping.find(params[:id])
     @cost = Cost.where(shipping: params[:id])
     @deliv_term = DelivTerm.where(shipping: params[:id])
   end
+
   def new
     @shipping = Shipping.new
   end
+
+  def edit
+    @shipping = Shipping.find(params[:id])
+  end
+
   def create
     shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
                                                        :min_weight, :max_weight,
@@ -15,24 +22,25 @@ class ShippingsController < ApplicationController
     s.save
     redirect_to root_path
   end
+
   def search
     @name = params['query']
     @shippings = Shipping.where('name LIKE ?', "%#{@name}%")
   end
-  def edit
-    @shipping = Shipping.find(params[:id])
-  end
+
   def update
     shipping_params = params.require(:shipping).permit(:name, :min_dist, :max_dist,
-                                                      :min_weight, :max_weight,
-                                                      :deliv_fee)
+                                                       :min_weight, :max_weight,
+                                                       :deliv_fee)
     Shipping.update(params[:id], shipping_params)
     redirect_to shipping_path(shipping_params)
   end
+
   def active
     Shipping.update(params[:id], status: 1)
     redirect_to root_path
   end
+
   def disable
     Shipping.update(params[:id], status: 0)
     redirect_to root_path

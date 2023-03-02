@@ -2,12 +2,14 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um veículo' do
   it 'com sucesso' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     VehicleCategory.create!(category: 'PickUp')
     VehicleType.create!(manufacturer_vehicle: 'VW', model_vehicle: 'Amarok')
     VehicleCategory.create!(category: 'Sedan médio')
     VehicleType.create!(manufacturer_vehicle: 'GM', model_vehicle: 'Prisma')
 
     visit root_path
+    login_as(user)
     click_on 'Cadastrar Veículo'
     select 'Sedan médio', from: 'Categoria'
     select 'Prisma', from: 'Modelo'
@@ -22,12 +24,14 @@ describe 'Usuário cadastra um veículo' do
     expect(page).not_to have_content ' ativo'
   end
   it 'sem sucesso' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     VehicleCategory.create!(category: 'PickUp')
     VehicleType.create!(manufacturer_vehicle: 'VW', model_vehicle: 'Amarok')
     VehicleCategory.create!(category: 'Sedan médio')
     VehicleType.create!(manufacturer_vehicle: 'GM', model_vehicle: 'Prisma')
 
     visit root_path
+    login_as(user)
     click_on 'Cadastrar Veículo'
     select 'Sedan médio', from: 'Categoria'
     select 'Prisma', from: 'Modelo'

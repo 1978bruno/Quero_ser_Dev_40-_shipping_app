@@ -4,10 +4,12 @@ RSpec.describe Order, type: :model do
   describe '#valid?' do
     it 'deve ter um código' do
       user = User.create(name: 'User', email: 'user@email.com', password: 'pwd123456')
-      order = Order.create!(collect_zip: 11_256_360, collect_street: 'Rua um dois três', collect_number: 205, collect_nhood: 'Laranjeiras', collect_city: 'Condongas',
-                    collect_state: 'MS', width: 10, height: 12, depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12_365_480,
-                    deliv_street: 'Rua Condongueira', deliv_number: 105, deliv_nhood: 'Canelas', deliv_city: 'Jocacia', deliv_state: 'MT', km_dist: 102,
-                    user: user)
+      order = Order.create!(collect_zip: 11_256_360, collect_street: 'Rua um dois três', collect_number: 205,
+                            collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10,
+                            height: 12, depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro',
+                            deliv_zip: 12_365_480, deliv_street: 'Rua Condongueira', deliv_number: 105,
+                            deliv_nhood: 'Canelas', deliv_city: 'Jocacia', deliv_state: 'MT', km_dist: 102,
+                            user_id: user.id)
 
       expect(order.valid?).to be true
       expect(order.collect_zip).to eq 11_256_360

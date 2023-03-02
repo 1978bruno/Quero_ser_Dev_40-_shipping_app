@@ -1,22 +1,9 @@
 class VehiclesController < ApplicationController
+  before_action :authenticate_user!, only: %i[new edit]
   def index
     @vehicles = Vehicle.all
     @vehicle_categories = VehicleCategory.all
     @vehicle_types = VehicleType.all
-  end
-
-  def create
-    vehicle_params = params.require(:vehicle).permit(:license_plate, :manufature_year, :maximum_load_capacity,
-                                                     :vehicle_category_id, :vehicle_type_id)
-    @vehicle = Vehicle.new(vehicle_params)
-    if @vehicle.save
-      redirect_to vehicles_path, notice: 'Veículo cadastrado com sucesso'
-    else
-      @vehicle_categories = VehicleCategory.all
-      @vehicle_types = VehicleType.all
-      flash.now[:alert] = 'Veículo não cadastrado'
-      render :new
-    end
   end
 
   def new
@@ -31,21 +18,33 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.find(params[:id])
   end
 
+  def create
+    vehicle_params = params.require(:vehicle).permit(:license_plate, :manufature_year, :maximum_load_capacity,
+                                                     :vehicle_category_id, :vehicle_type_id)
+    @vehicle = Vehicle.new(vehicle_params)
+    return redirect_to vehicles_path, notice: I18n.t(:vehicle_register_successfuly) if @vehicle.save
+
+    @vehicle_categories = VehicleCategory.all
+    @vehicle_types = VehicleType.all
+    flash.now[:alert] = I18n.t(:vehicle_register_unsuccessfuly)
+    render :new
+  end
+
   def update
     vehicle_params = params.require(:vehicle).permit(:license_plate, :manufature_year, :maximum_load_capacity,
                                                      :vehicle_category_id, :vehicle_type_id)
-    
-    Vehicle.update(params[:id], vehicle_params)
-    if vehicle_params['license_plate'].empty? || vehicle_params['manufature_year'].empty? || vehicle_params['maximum_load_capacity'].empty?
-      redirect_to vehicles_path, notice: 'Não foi possível atualizar os dados do veículo.'
+    if Vehicle.update(params[:id], vehicle_params).valid?
+      redirect_to vehicles_path, notice: I18n.t(:vehicle_update_successfuly)
     else
-      redirect_to vehicles_path, notice: 'Dados do veículo atualizados com sucesso'
+      redirect_to vehicles_path, notice: I18n.t(:vehicle_update_unsuccessfuly)
     end
   end
+
   def active
     Vehicle.update(params[:id], status: 1)
     redirect_to vehicles_path
   end
+
   def disable
     Vehicle.update(params[:id], status: 0)
     redirect_to vehicles_path

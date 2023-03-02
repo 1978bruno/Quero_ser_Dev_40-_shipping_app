@@ -8,37 +8,28 @@ describe 'Usuário parametriza relação prazo X distância' do
     expect(current_path).to eq new_user_session_path
   end
   it 'iniciando pela tela inicial' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
 
     visit root_path
-    click_on('Cadastrar Prazo')
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
-
+    login_as(user)
+    click_on 'Cadastrar Prazo'
     expect(page).to have_field 'Peso mínimo'
     expect(page).to have_field 'Peso máximo'
     expect(page).to have_field 'Prazo de entrega'
   end
   it 'com sucesso' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
-    shipping1 = Shipping.create!(name: 'BH', min_dist: 160, max_dist: 1120, min_weight: 1200, max_weight: 1800,
-                                 deliv_fee: 1250)
-    shipping0 = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
-                                 deliv_fee: 250)
-    Cost.create!(int_min_weight: 25, int_max_weight: 80, km_value: 0.15, shipping: shipping0)
-    Cost.create!(int_min_weight: 81, int_max_weight: 120, km_value: 0.45, shipping: shipping0)
-    Cost.create!(int_min_weight: 120, int_max_weight: 150, km_value: 0.75, shipping: shipping0)
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    Shipping.create!(name: 'BH', min_dist: 160, max_dist: 1120, min_weight: 1200, max_weight: 1800,
+                     deliv_fee: 1250)
+    shipping_id = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
+                                   deliv_fee: 250)
+    Cost.create!(int_min_weight: 25, int_max_weight: 80, km_value: 0.15, shipping: shipping_id)
+    Cost.create!(int_min_weight: 81, int_max_weight: 120, km_value: 0.45, shipping: shipping_id)
+    Cost.create!(int_min_weight: 120, int_max_weight: 150, km_value: 0.75, shipping: shipping_id)
 
     visit root_path
-    click_on('Cadastrar Prazo')
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
+    login_as(user)
+    click_on 'Cadastrar Prazo'
     select 'Rio', from: 'Modelo'
     fill_in 'Peso mínimo', with: 125
     fill_in 'Peso máximo', with: 150
@@ -51,20 +42,14 @@ describe 'Usuário parametriza relação prazo X distância' do
     expect(page).to have_content '15 dias'
   end
   it 'sem sucesso' do
-    User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
-    shipping1 = Shipping.create!(name: 'BH', min_dist: 160, max_dist: 1120, min_weight: 1200, max_weight: 1800,
-                                 deliv_fee: 1250)
-    shipping = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
-                                deliv_fee: 250)
-    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping_id: shipping.id)
+    user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
+    shipping_id = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
+                                   deliv_fee: 250)
+    Cost.create!(int_min_weight: 125, int_max_weight: 150, km_value: 15, shipping: shipping_id)
 
     visit root_path
-    click_on('Cadastrar Prazo')
-    within('form') do
-      fill_in 'E-mail', with: 'bruno@email.com'
-      fill_in 'Senha', with: 'password'
-      click_on 'Entrar'
-    end
+    login_as(user)
+    click_on 'Cadastrar Prazo'
     select 'Rio', from: 'Modelo'
     fill_in 'Peso mínimo', with: ''
     fill_in 'Peso máximo', with: 150

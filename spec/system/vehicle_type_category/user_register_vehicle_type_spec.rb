@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe 'Usuário cadastra um novo modelo de veículo' do
   it 'com sucesso' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     visit root_path
+    login_as(user)
     click_on 'Veículos'
     click_on 'Cadastrar modelo de veículo'
     fill_in 'Modelo', with: 'Prisma'
@@ -12,7 +14,9 @@ describe 'Usuário cadastra um novo modelo de veículo' do
     expect(page).to have_content 'O veículo modelo: Prisma - GM foi cadastrado com sucesso'
   end
   it 'sem sucesso' do
+    user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     visit root_path
+    login_as(user)
     click_on 'Veículos'
     click_on 'Cadastrar modelo de veículo'
     click_on 'Gravar'

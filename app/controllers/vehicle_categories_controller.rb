@@ -1,4 +1,5 @@
 class VehicleCategoriesController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
   def new
     @vehicle_category = VehicleCategory.new
   end

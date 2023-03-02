@@ -6,6 +6,9 @@ ruby '3.1.2'
 # Bundle for external API consume
 gem 'faraday'
 
+# Bundle for specify the requisites of rubocop
+gem 'rubocop-rails'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
 

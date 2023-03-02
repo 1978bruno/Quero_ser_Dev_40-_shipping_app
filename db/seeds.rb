@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.create(name: 'User', email: 'user@email.com', password: 'pwd123456')
-Order.create!(collect_zip: 11_256_360, collect_street: 'Rua um dois três', collect_number: 205, 
-              collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10, height: 12, 
+Order.create!(collect_zip: 11_256_360, collect_street: 'Rua um dois três', collect_number: 205,
+              collect_nhood: 'Laranjeiras', collect_city: 'Condongas', collect_state: 'MS', width: 10, height: 12,
               depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro', deliv_zip: 12_365_480,
-              deliv_street: 'Rua Condongueira', deliv_number: 105, deliv_nhood: 'Canelas', deliv_city: 'Jocacia', 
+              deliv_street: 'Rua Condongueira', deliv_number: 105, deliv_nhood: 'Canelas', deliv_city: 'Jocacia',
               deliv_state: 'MT', km_dist: 102, user_id: 1, status: 0)
 Shipping.create!(name: 'GP003', min_dist: 10, max_dist: 110, min_weight: 60, max_weight: 120,
-                             deliv_fee: 250)
+                 deliv_fee: 250)
 Shipping.create!(name: 'GP004', min_dist: 111, max_dist: 180, min_weight: 60, max_weight: 85,
-                             deliv_fee: 150)
+                 deliv_fee: 150)
 Shipping.create!(name: 'GP005', min_dist: 111, max_dist: 180, min_weight: 80, max_weight: 85,
-                             deliv_fee: 100)
+                 deliv_fee: 100)
 Cost.create!(int_min_weight: 60, int_max_weight: 70, km_value: 0.15, shipping_id: 1)
 Cost.create!(int_min_weight: 71, int_max_weight: 80, km_value: 0.45, shipping_id: 1)
 Cost.create!(int_min_weight: 81, int_max_weight: 85, km_value: 0.75, shipping_id: 1)
