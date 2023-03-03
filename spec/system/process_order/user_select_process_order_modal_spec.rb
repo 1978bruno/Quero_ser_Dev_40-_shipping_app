@@ -9,18 +9,10 @@ describe 'Usuário inicia uma ordem' do
                   width: 10, height: 12, depth: 13, weight: 82, deliv_reipient: 'Um Dois Três de Oliveira Quatro',
                   deliv_zip: 12_365_480, deliv_street: 'Rua Condongueira', deliv_number: 105, deliv_nhood: 'Canelas',
                   deliv_city: 'Jocacia', deliv_state: 'MT', km_dist: 102, user_id: user.id, status: 0)
-    shipping1 = Shipping.create!(name: 'GP003', min_dist: 10, max_dist: 110, min_weight: 60, max_weight: 120,
-                                 deliv_fee: 250, status: 1)
     shipping2 = Shipping.create!(name: 'GP004', min_dist: 111, max_dist: 180, min_weight: 60, max_weight: 85,
                                  deliv_fee: 150, status: 1)
-    shipping3 = Shipping.create!(name: 'GP005', min_dist: 111, max_dist: 180, min_weight: 80, max_weight: 85,
-                                 deliv_fee: 100, status: 1)
-    Cost.create!(int_min_weight: 60, int_max_weight: 85, km_value: 0.15, shipping: shipping1)
     Cost.create!(int_min_weight: 81, int_max_weight: 100, km_value: 0.45, shipping: shipping2)
-    Cost.create!(int_min_weight: 80, int_max_weight: 85, km_value: 0.75, shipping: shipping3)
-    DelivTerm.create!(term_int_min_weight: 60, term_int_max_weight: 85, deliv_term: 15, shipping: shipping1)
     DelivTerm.create!(term_int_min_weight: 81, term_int_max_weight: 100, deliv_term: 45, shipping: shipping2)
-    DelivTerm.create!(term_int_min_weight: 80, term_int_max_weight: 85, deliv_term: 75, shipping: shipping3)
     vehicle_category_id = VehicleCategory.create!(category: 'Sedan médio')
     vehicle_type_id = VehicleType.create!(manufacturer_vehicle: 'VW', model_vehicle: 'Jetta')
     Vehicle.create!(license_plate: 'CDD-0880', manufature_year: '2021', maximum_load_capacity: 450,

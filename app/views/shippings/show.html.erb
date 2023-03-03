@@ -25,6 +25,7 @@
               <th scope="col">Menor peso do intervalo</th>
               <th scope="col">Maior peso do intervalo</th>
               <th scope="col">Valor do KM</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,11 @@
                 <td><%= cost.int_min_weight %>kg</td>
                 <td><%= cost.int_max_weight %>kg</td>
                 <td><%= number_to_currency(cost.km_value) %></td>
+                <td id="cost_<%= cost.id %>">
+                  <%= link_to edit_cost_path(cost.id) do%>
+                    <%= image_tag('edit.png',size: '12x25', alt: "editar" ) %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>
@@ -46,6 +52,7 @@
               <th scope="col">Menor peso do intervalo</th>
               <th scope="col">Maior peso do intervalo</th>
               <th scope="col">Prazo de entrega</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +61,11 @@
                 <td><%= deliv_term.term_int_min_weight %>kg</td>
                 <td><%= deliv_term.term_int_max_weight %>kg</td>
                 <td><%= deliv_term.deliv_term %> dias</td>
+                <td id="deliv_term_<%= deliv_term.id %>">
+                  <%= link_to edit_deliv_term_path(deliv_term.id) do%>
+                    <%= image_tag('edit.png',size: '12x25', alt: "editar" ) %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
           </tbody>

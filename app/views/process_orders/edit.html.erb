@@ -50,7 +50,7 @@
           <h5 class="card-title" align="center"><%=shipping.name %></h5>
           <p class="card-text">
             <strong>Valor total da operação:    </strong><br>
-            <%  if @cost.present? %>
+            <%  if @cost.find_by(shipping: shipping).present? %>
               <% total_cost = @cost.find_by(shipping: shipping).km_value * @order.km_dist + shipping.deliv_fee %>
               <%= number_to_currency(total_cost) %><br>
               (Valor do km rodado: <%= number_to_currency(@cost.find_by(shipping: shipping).km_value) %>)<br>
@@ -58,7 +58,7 @@
               <p> Custo do KM rodado não cadastrado</p>
             <% end %>
             <strong>Valor de taxa de entrega:   </strong><br><%= number_to_currency(shipping.deliv_fee) %><br>
-            <%  if @deliv_term.present? %>
+            <%  if @deliv_term.find_by(shipping: shipping).present? %>
               <strong>Tempo total da operação:    </strong><br><%= @deliv_term.find_by(shipping: shipping).deliv_term %>dias<br>
             <% else %>
               <p> Prazo de entrega não cadastrado</p>
@@ -70,7 +70,7 @@
               <%= @vehicle_type.manufacturer_vehicle %> - <%= @vehicle_type.model_vehicle %><br><br><br>
             <% end %>
             </p>
-            <% if @cost.present? && @vehicle.present? && @deliv_term.present? %>
+            <% if @cost.find_by(shipping: shipping).present? && @vehicle.present? && @deliv_term.find_by(shipping: shipping).present? %>
               <%= link_to "iniciar entrega", select_modal_order_path(:shipping_id => shipping.id, :vehicle_id => @vehicle.id, 
                                                                     :order_id => @order.id, :total_cost => total_cost), 
                   class: "btn btn-primary", id: "#{shipping.name}" %>

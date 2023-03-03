@@ -1,1 +1,53 @@
-
+<h1 align="center"> Detalhes do pedido </h1>
+<br>
+<div class="row">
+  <div class="col">
+    <strong><%= Order.human_attribute_name(:code) %>: </strong>
+    <%= @order.code %><br>
+    <strong>Pedido criado por: </strong>
+    <%= @user.name %><br>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col">
+    <h5>Coleta:</H5><br>
+    <strong><%= Order.human_attribute_name(:collect_zip) %>: </strong>
+    <%= @order.collect_zip %><br>
+    <strong><%= Order.human_attribute_name(:collect_street) %>: </strong><br>
+    <%= @order.collect_street %>, <%= @order.collect_number %> - <%= @order.collect_nhood %><br>
+    <%= @order.collect_city %> - <%= @order.collect_state %>
+  </div>
+  <div class="col">
+    <h5>Destino:</h5><br>
+    <strong><%= Order.human_attribute_name(:deliv_reipient) %>: </strong>
+    <%= @order.deliv_reipient %><br>
+    <strong><%= Order.human_attribute_name(:deliv_zip) %>: </strong>
+    <%= @order.deliv_zip %><br>
+    <strong><%= Order.human_attribute_name(:deliv_street) %>: </strong><br>
+    <%= @order.deliv_street %>, <%= @order.deliv_number %> - <%= @order.deliv_nhood %><br>
+    <%= @order.deliv_city %> -  <%= @order.deliv_state %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col">
+    <strong>Dimensões do produto: </strong>
+    <%= @order.width %>cm X <%= @order.height %>cm X <%= @order.depth %>cm<br>
+    <strong><%= Order.human_attribute_name(:weight) %>: </strong>
+    <%= @order.weight %>kg<br>
+    <strong><%= Order.human_attribute_name(:km_dist) %>: </strong>
+    <%= @order.km_dist %>km<br>
+    <strong><%= Order.human_attribute_name(:status) %>: </strong>
+    <%= I18n.t(@order.status) %>
+  </div>
+  <div class="col">
+    <strong>Modalidade de transporte:    </strong><br><%= @shipping.name %><br>
+    <strong>Valor total da operação:    </strong><br><%= number_to_currency(@process_order.total_cost) %><br>
+    (Valor do km rodado: <%= number_to_currency(@cost.km_value) %>)<br>
+    <strong>Valor de taxa de entrega:   </strong><br><%= number_to_currency(@shipping.deliv_fee) %><br>
+    <strong>Tempo total da operação:    </strong><br><%= @deliv_term.deliv_term %>dias<br>
+    <strong>Transporte disponível:    </strong><br><%= @vehicle.license_plate %><br>
+    <%= @vehicle_type.manufacturer_vehicle %> - <%= @vehicle_type.model_vehicle %> - <%= @vehicle.manufature_year %><br><br><br>
+  </div>
+</div>

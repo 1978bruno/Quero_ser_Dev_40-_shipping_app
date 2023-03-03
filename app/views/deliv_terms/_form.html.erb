@@ -1,4 +1,4 @@
-<%= form_with(model: DelivTerm.new) do |f| %>
+<%= form_with(model: @deliv_term ) do |f| %>
   <div class="row">
     <div class="col-1"><strong><%=f.label :shipping_id, 'Modelo', class: "form-label" %></strong></div>
     <div class="col-2"><%= f.collection_select :shipping_id, @shipping, :id, :name, {:include_blank => true}, {class: "form-control"} %></div>

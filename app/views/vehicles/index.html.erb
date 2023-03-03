@@ -33,14 +33,14 @@
             <%= image_tag('edit.png',size: '12x25', alt: "editar" ) %>
           <% end %>
         </td>
-        <td>
+        <td id="<%= vehicle.license_plate %>">
           <% if vehicle.status == 'disabled' %>
             <%= button_to active_vehicle_path(vehicle.id), class: "btn btn-link" do %>
-              <%= image_tag('on.png', size: '25x12', alt: "Ativar" ) %>
+              <%= image_tag('off.png', size: '25x12', alt: "Ativar" ) %>
             <% end %>
           <% else %>
             <%= button_to disable_vehicle_path(vehicle.id), class: "btn btn-link" do %>
-              <%= image_tag('off.png', size: '25x12', alt: "Desativas" ) %>
+              <%= image_tag('on.png', size: '25x12', alt: "Desativar" ) %>
             <% end %>
           <% end %>
         </td>

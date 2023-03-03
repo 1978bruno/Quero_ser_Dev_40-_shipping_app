@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  include OrdersControllerMethods
   before_action :authenticate_user!, only: %i[new edit]
   def index
     if current_user.nil?
@@ -86,10 +87,10 @@ class OrdersController < ApplicationController
 
   def update
     order_params
-    if Order.update(params[:id], order_params)
-      redirect_to order_path(params[:id]), notice: I18n.t(:order_update_unsuccefuly)
-    else
+    if Order.update(params[:id], order_params).valid?
       redirect_to order_path(params[:id]), notice: I18n.t(:order_update_succefuly)
+    else
+      redirect_to order_path(params[:id]), notice: I18n.t(:order_update_unsuccefuly)
     end
   end
 
@@ -103,23 +104,5 @@ class OrdersController < ApplicationController
     Vehicle.update(params[:vehicle_id], status: 2)
     Order.update(params[:id], status: 3)
     redirect_to order_path(params[:order_id])
-  end
-
-  def canceled
-    Order.update(params[:id], status: 2)
-    vehicle_id = ProcessOrder.where(order_id: params[:id]).vehicle_id
-    Vehicle.update(params[vehicle_id, status: 1])
-    redirect_to order_path(params[:id])
-  end
-
-  def delivered
-    Order.update(params[:id], status: 1)
-    vehicle_id = ProcessOrder.where(order_id: params[:id]).vehicle_id
-    Vehicle.update(params[vehicle_id, status: 1])
-    redirect_to order_path(params[:id])
-  end
-
-  def delivering
-    @order = Order.where(status: 'delivering')
   end
 end

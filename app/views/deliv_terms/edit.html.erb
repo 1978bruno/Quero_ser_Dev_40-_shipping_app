@@ -1,0 +1,15 @@
+<div class="col-3" align="center">
+  <h1>Cadastro do custo frete</h1>
+  <h2>Peso X Prazo</h2>
+  <br>
+</div>
+<% if (@deliv_term.errors.any?) %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @deliv_term.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

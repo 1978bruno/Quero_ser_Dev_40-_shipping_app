@@ -1,9 +1,14 @@
 class DelivTermsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: %i[new edit]
 
   def new
-    @shipping = Shipping.all
+    @shipping = Shipping.where(status: 'activated')
     @deliv_term = DelivTerm.new
+  end
+
+  def edit
+    @deliv_term = DelivTerm.find(params[:id])
+    @shipping = Shipping.where(id: @deliv_term.shipping_id)
   end
 
   def create
@@ -11,9 +16,20 @@ class DelivTermsController < ApplicationController
                                                                    :deliv_term, :shipping_id))
     deliv_term_capture and return if @deliv_term.save
 
-    @shipping = Shipping.all
+    @shipping = Shipping.where(status: 'activated')
     flash.now[:alert] = "#{I18n.t(:register_unsuccessfuly)} Não podem existir campos em branco."
     render :new
+  end
+
+  def update
+    @deliv_term = DelivTerm.update(params[:id], params.require(:deliv_term).permit(:term_int_min_weight,
+                                                                                   :term_int_max_weight,
+                                                                                   :deliv_term, :shipping_id))
+    deliv_term_capture and return if @deliv_term.valid?
+
+    @shipping = Shipping.where(status: 'activated')
+    flash.now[:alert] = "#{I18n.t(:register_unsuccessfuly)} Não podem existir campos em branco."
+    render :edit
   end
 
   def deliv_term_capture

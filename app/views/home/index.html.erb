@@ -10,7 +10,7 @@
 <br><br>
 <div class="row">
   <% @shippings.each do |s| %>
-    <div class="col">
+    <div id="<%= s.name %>" class="col">
       <div class="card" style="width: 14rem;">
         <%= image_tag('transporte.jpeg', class: "card-img-top", alt: "Modelidade: #{s.name}") %>
         <div class="card-body">

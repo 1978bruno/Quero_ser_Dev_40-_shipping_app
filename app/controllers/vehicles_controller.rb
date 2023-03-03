@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit]
+  before_action :authenticate_user!, only: %i[new edit index]
   def index
     @vehicles = Vehicle.all
     @vehicle_categories = VehicleCategory.all

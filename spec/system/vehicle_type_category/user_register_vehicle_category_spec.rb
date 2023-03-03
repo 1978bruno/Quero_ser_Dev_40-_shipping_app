@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário cadastra um novo modelo de veículo' do
+describe 'Usuário cadastra uma nova categoria de veículo' do
   it 'com sucesso' do
     user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     visit root_path

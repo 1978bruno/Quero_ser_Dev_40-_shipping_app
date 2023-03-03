@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário cadastra um veículo' do
+describe 'Usuário cadastra um veículo, a partir de tela inicial,' do
   it 'com sucesso' do
     user = User.create!(name: 'User', email: 'user@email.com', password: 'pwd123456')
     VehicleCategory.create!(category: 'PickUp')

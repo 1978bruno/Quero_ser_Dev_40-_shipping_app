@@ -24,5 +24,13 @@
       <strong><%= Order.human_attribute_name(:status) %>: </strong>
       <%= I18n.t(order.status) %><br>
     </p>
+    <div id="<%= order.code %>" class="row">
+      <div class="col" align="center">
+        <%= link_to 'Detalhes', process_order_path(order.id), class: "btn btn-light"  %>
+      </div>
+      <div class="col" align="center">
+         <%= button_to 'Mudar Status', order, class: "btn btn-light"  %>
+      </div>
+    </div>
   </div>
 </div>

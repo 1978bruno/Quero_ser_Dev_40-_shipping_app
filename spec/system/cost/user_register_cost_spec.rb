@@ -18,7 +18,7 @@ describe 'Usuário parametriza relação preço X peso' do
   it 'com sucesso' do
     user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
     shipping_id = Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
-                                   deliv_fee: 250)
+                                   deliv_fee: 250, status: 1)
     DelivTerm.create!(term_int_min_weight: 125, term_int_max_weight: 150, deliv_term: 15, shipping: shipping_id)
 
     visit root_path
@@ -38,7 +38,7 @@ describe 'Usuário parametriza relação preço X peso' do
   it 'sem sucesso' do
     user = User.create!(name: 'Bruno', email: 'bruno@email.com', password: 'password')
     Shipping.create!(name: 'Rio', min_dist: 60, max_dist: 120, min_weight: 200, max_weight: 800,
-                     deliv_fee: 250)
+                     deliv_fee: 250, status: 1)
 
     visit root_path
     login_as(user)
